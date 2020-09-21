@@ -12,7 +12,17 @@ print_usage() {
 
 # ---Dispatch handlers---
 dispatch_file() {
-	printf "dummy dispatch handler\\n"
+	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
+
+	file="$2"
+	if [ "$file" = "-" ]; then
+		curl "-Ffile=@-" "http://0x0.st" # Read file from stdin
+	else
+		[ ! -e "$file" ] && printf 'error: "%s" does not exist\n' "$file" && exit 1
+		[ -d "$file" ] && printf 'error: "%s" is a directory\n' "$file" && exit 1
+
+		curl "-Ffile=@$file" "http://0x0.st"
+	fi
 }
 
 dispatch_url() {
