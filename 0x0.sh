@@ -33,7 +33,10 @@ dispatch_url() {
 }
 
 dispatch_shorten() {
-	printf "dummy dispatch handler\\n"
+	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
+
+	url="$2"
+	curl "-Fshorten=$url" "https://0x0.st"
 }
 
 # ---Dispatcher---
