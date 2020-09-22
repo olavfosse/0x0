@@ -56,6 +56,27 @@ if [ ! "$actual_output" = "$expected_output" ]; then
 	fail
 fi
 
+# Test 3
+# HACK I was not able to escape the command properly, so the literal command is repeated in two lines
+assertion='File is uploaded from stdin'
+expected_output_pattern='http://0x0.st/*.txt'
+actual_output="$(echo "I want to share this with my friends on irc" | ./0x0.sh file - 2>&1)"
+
+case "$actual_output" in
+	$expected_output_pattern)
+		;;
+	*)
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo 'echo "I want to share this with my friends on irc" | ./0x0.sh file -'
+		echo '---EXPECTED OUTPUT PATTERN---'
+		echo "$expected_output_pattern"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+esac
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
