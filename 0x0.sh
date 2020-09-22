@@ -13,9 +13,6 @@
 # OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 # PERFORMANCE OF THIS SOFTWARE.
 
-# ---Settings---
-set -e
-
 # ---Helpers---
 print_usage() {
 	file_name="$(basename "$0")"
@@ -23,6 +20,11 @@ print_usage() {
 	printf '       %s url [url]\n' "$file_name"
 	printf '       %s shorten [url]\n' "$file_name"
 	printf '       %s [-h | --help | help]\n' "$file_name"
+}
+
+is_in_path() {
+	which "$1" > /dev/null 2> /dev/null
+	return "$?"
 }
 
 # ---Dispatch handlers---
@@ -55,20 +57,27 @@ dispatch_shorten() {
 }
 
 # ---Dispatcher---
-case "$1" in
-	file)
-		dispatch_file "$@"
-		;;
-	url)
-		dispatch_url "$@"
-		;;
-	shorten)
-		dispatch_shorten "$@"
-		;;
-	-h | --help | help)
-		print_usage
-		;;
-	*)
-		print_usage 1>&2
-		exit 1
-esac
+dispatch() {
+	case "$1" in
+		file)
+			dispatch_file "$@"
+			;;
+		url)
+			dispatch_url "$@"
+			;;
+		shorten)
+			dispatch_shorten "$@"
+			;;
+		-h | --help | help)
+			print_usage
+			;;
+		*)
+			print_usage 1>&2
+			exit 1
+	esac
+}
+
+# ---Entry point---
+is_in_path curl || exit_with_error 'curl: not found'
+
+dispatch "$@"
