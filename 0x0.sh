@@ -46,7 +46,7 @@ dispatch_url() {
 	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
 
 	url="$2"
-	curl "-Furl=$url" "https://0x0.st"
+	curl -sS "-Furl=$url" "https://0x0.st"
 }
 
 dispatch_shorten() {
