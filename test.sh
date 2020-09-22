@@ -145,6 +145,51 @@ case "$actual_output" in
 		fail
 esac
 
+# Test 7
+assertion='Error message is printed when attempt to upload non-existant file'
+file="/tmp/non-existant-file"
+command="./0x0.sh file $file"
+expected_output="error: $file does not exist"
+actual_output="$($command 2>&1)"
+
+case "$actual_output" in
+	$expected_output)
+		;;
+	*)
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo "$command"
+		echo '---EXPECTED OUTPUT---'
+		echo "$expected_output"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+esac
+
+# Test 8
+assertion='Error message is printed when attempt to upload directory'
+directory="/tmp/"
+command="./0x0.sh file $directory"
+expected_output="error: $directory is a directory"
+actual_output="$($command 2>&1)"
+
+case "$actual_output" in
+	$expected_output)
+		;;
+	*)
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo "$command"
+		echo '---EXPECTED OUTPUT---'
+		echo "$expected_output"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+esac
+
+# ---Report---
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
