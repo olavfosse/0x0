@@ -18,10 +18,11 @@ set -e
 
 # ---Helpers---
 print_usage() {
-	printf 'usage: %s file [file | -]\n' "$0"
-	printf '       %s url [url]\n' "$0"
-	printf '       %s shorten [url]\n' "$0"
-	printf '       %s [-h | --help | help]\n' "$0"
+	file_name="$(basename "$0")"
+	printf 'usage: %s file [file | -]\n' "$file_name"
+	printf '       %s url [url]\n' "$file_name"
+	printf '       %s shorten [url]\n' "$file_name"
+	printf '       %s [-h | --help | help]\n' "$file_name"
 }
 
 # ---Dispatch handlers---
