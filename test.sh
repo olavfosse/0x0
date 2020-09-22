@@ -21,10 +21,10 @@ usage() {
 
 # ---Tests---
 # Test 1
-assertion='Error message is printed when curl is not in PATH'
-command='./0x0.sh'
-expected_output='curl: not found'
-actual_output="$(PATH="" $command 2>&1)"
+assertion='Error message is printed when too few arguments are passed'
+command='./0x0.sh file'
+expected_output="$(usage)"
+actual_output="$($command 2>&1)"
 
 if [ ! "$actual_output" = "$expected_output" ]; then
 	echo '---ASSERTION---'
@@ -39,8 +39,8 @@ if [ ! "$actual_output" = "$expected_output" ]; then
 fi
 
 # Test 2
-assertion='Error message is printed when too few arguments are passed'
-command='./0x0.sh file'
+assertion='Error message is printed when too many arguments are passed'
+command='./0x0.sh file file1 file2'
 expected_output="$(usage)"
 actual_output="$($command 2>&1)"
 
