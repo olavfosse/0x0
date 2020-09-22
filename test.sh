@@ -101,6 +101,28 @@ case "$actual_output" in
 		fail
 esac
 
+# Test 5
+assertion='File is uploaded from URL'
+url='https://fossegr.im/'
+command="./0x0.sh url $url"
+expected_output_pattern='https://0x0.st/*.html'
+actual_output="$($command 2>&1)"
+
+case "$actual_output" in
+	$expected_output_pattern)
+		;;
+	*)
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo "$command"
+		echo '---EXPECTED OUTPUT PATTERN---'
+		echo "$expected_output_pattern"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+esac
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
