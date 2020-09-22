@@ -53,7 +53,7 @@ dispatch_shorten() {
 	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
 
 	url="$2"
-	curl "-Fshorten=$url" "https://0x0.st"
+	curl -sS "-Fshorten=$url" "https://0x0.st"
 }
 
 # ---Dispatcher---
