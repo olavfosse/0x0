@@ -16,7 +16,6 @@ usage() {
 	echo 'usage: 0x0.sh file [file | -]'
 	echo '       0x0.sh url [url]'
 	echo '       0x0.sh shorten [url]'
-	echo '       0x0.sh [-h | --help | help]'
 }
 
 # ---Tests---

@@ -19,7 +19,6 @@ usage() {
 	printf 'usage: %s file [file | -]\n' "$file_name"
 	printf '       %s url [url]\n' "$file_name"
 	printf '       %s shorten [url]\n' "$file_name"
-	printf '       %s [-h | --help | help]\n' "$file_name"
 }
 
 is_in_path() {
@@ -72,9 +71,6 @@ dispatch() {
 			;;
 		shorten)
 			dispatch_shorten "$@"
-			;;
-		-h | --help | help)
-			usage
 			;;
 		*)
 			exit_with_error "$(usage)"
