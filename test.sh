@@ -77,6 +77,30 @@ case "$actual_output" in
 		fail
 esac
 
+# Test 4
+assertion='File is uploaded from disk'
+file_name='/tmp/0x0.sh.temp'
+echo '#!/bin/sh' >> "$file_name"
+echo 'echo hello, world' >> "$file_name"
+command="./0x0.sh file $file_name"
+expected_output_pattern='http://0x0.st/*.temp'
+actual_output="$($command 2>&1)"
+
+case "$actual_output" in
+	$expected_output_pattern)
+		;;
+	*)
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo "$command"
+		echo '---EXPECTED OUTPUT PATTERN---'
+		echo "$expected_output_pattern"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+esac
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
