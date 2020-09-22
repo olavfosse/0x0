@@ -38,7 +38,7 @@ dispatch_file() {
 		[ ! -e "$file" ] && printf 'error: "%s" does not exist\n' "$file" && exit 1
 		[ -d "$file" ] && printf 'error: "%s" is a directory\n' "$file" && exit 1
 
-		curl "-Ffile=@$file" "http://0x0.st"
+		curl -sS "-Ffile=@$file" "http://0x0.st"
 	fi
 }
 
