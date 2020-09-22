@@ -13,14 +13,15 @@
 # OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 # PERFORMANCE OF THIS SOFTWARE.
 
-# ---Helpers---
-usage() {
-	file_name="$(basename "$0")"
-	printf 'usage: %s file [file | -]\n' "$file_name"
-	printf '       %s url [url]\n' "$file_name"
-	printf '       %s shorten [url]\n' "$file_name"
-}
+# ---Constants---
+USAGE="$(cat << EOF
+usage:	0x0 file FILE
+	0x0 url URL
+	0x0 shorten URL
+EOF
+)"
 
+# ---Helpers---
 is_in_path() {
 	which "$1" > /dev/null 2> /dev/null
 	return "$?"
@@ -33,7 +34,7 @@ exit_with_error() {
 
 # ---Dispatch handlers---
 dispatch_file() {
-	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
+	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	file="$2"
 	if [ "$file" = "-" ]; then
@@ -47,14 +48,14 @@ dispatch_file() {
 }
 
 dispatch_url() {
-	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
+	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	url="$2"
 	curl -sS "-Furl=$url" "https://0x0.st"
 }
 
 dispatch_shorten() {
-	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
+	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	url="$2"
 	curl -sS "-Fshorten=$url" "https://0x0.st"
@@ -73,8 +74,7 @@ dispatch() {
 			dispatch_shorten "$@"
 			;;
 		*)
-			exit_with_error "$(usage)"
-			exit 1
+			exit_with_error "$USAGE"
 	esac
 }
 

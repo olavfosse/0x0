@@ -1,4 +1,12 @@
 #!/bin/sh
+# ---Constants---
+USAGE="$(cat << EOF
+usage:	0x0 file FILE
+	0x0 url URL
+	0x0 shorten URL
+EOF
+)"
+
 # ---Globals---
 ALL_GREEN=true
 
@@ -12,17 +20,11 @@ fail() {
 	fi
 }
 
-usage() {
-	echo 'usage: 0x0.sh file [file | -]'
-	echo '       0x0.sh url [url]'
-	echo '       0x0.sh shorten [url]'
-}
-
 # ---Tests---
 # Test 1
 assertion='Error message is printed when too few arguments are passed'
 command='./0x0.sh file'
-expected_output="$(usage)"
+expected_output="$USAGE"
 actual_output="$($command 2>&1)"
 
 if [ ! "$actual_output" = "$expected_output" ]; then
@@ -40,7 +42,7 @@ fi
 # Test 2
 assertion='Error message is printed when too many arguments are passed'
 command='./0x0.sh file file1 file2'
-expected_output="$(usage)"
+expected_output="$USAGE"
 actual_output="$($command 2>&1)"
 
 if [ ! "$actual_output" = "$expected_output" ]; then
