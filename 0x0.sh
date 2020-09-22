@@ -14,7 +14,7 @@
 # PERFORMANCE OF THIS SOFTWARE.
 
 # ---Helpers---
-print_usage() {
+usage() {
 	file_name="$(basename "$0")"
 	printf 'usage: %s file [file | -]\n' "$file_name"
 	printf '       %s url [url]\n' "$file_name"
@@ -27,30 +27,35 @@ is_in_path() {
 	return "$?"
 }
 
+exit_with_error() {
+	printf '%s\n' "$1" 1>&2
+	exit 1
+}
+
 # ---Dispatch handlers---
 dispatch_file() {
-	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
+	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
 
 	file="$2"
 	if [ "$file" = "-" ]; then
 		curl -sS "-Ffile=@-" "http://0x0.st" # Read file from stdin
 	else
-		[ ! -e "$file" ] && printf 'error: "%s" does not exist\n' "$file" && exit 1
-		[ -d "$file" ] && printf 'error: "%s" is a directory\n' "$file" && exit 1
+		[ ! -e "$file" ] && exit_with_error "error: $file does not exist"
+		[ -d "$file" ] && exit_with_error "error: $file is a directory"
 
 		curl -sS "-Ffile=@$file" "http://0x0.st"
 	fi
 }
 
 dispatch_url() {
-	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
+	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
 
 	url="$2"
 	curl -sS "-Furl=$url" "https://0x0.st"
 }
 
 dispatch_shorten() {
-	[ ! "$#" = 2 ] && print_usage 1>&2 && exit 1
+	[ ! "$#" = 2 ] && exit_with_error "$(usage)"
 
 	url="$2"
 	curl -sS "-Fshorten=$url" "https://0x0.st"
@@ -69,15 +74,15 @@ dispatch() {
 			dispatch_shorten "$@"
 			;;
 		-h | --help | help)
-			print_usage
+			usage
 			;;
 		*)
-			print_usage 1>&2
+			exit_with_error "$(usage)"
 			exit 1
 	esac
 }
 
 # ---Entry point---
-is_in_path curl || exit_with_error 'curl: not found'
+is_in_path curl || exit_with_error 'error: curl: not found'
 
 dispatch "$@"
