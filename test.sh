@@ -12,12 +12,10 @@ ALL_GREEN=true
 
 # ---Helpers---
 fail() {
-	if [ "$FAIL_FAST" = true ]; then
-		exit 1
-	else
-		ALL_GREEN=false
-		echo
-	fi
+	[ "$FAIL_FAST" = true ] && exit 1
+
+	ALL_GREEN=false
+	echo
 }
 
 test_exact () {

@@ -23,12 +23,15 @@ EOF
 
 # ---Helpers---
 is_in_path() {
-	which "$1" > /dev/null 2> /dev/null
+	file="$1"
+
+	which "$file" > /dev/null 2> /dev/null
 	return "$?"
 }
 
 is_valid_url() {
 	url="$1"
+
 	case "$url" in
 		https://*.* | https://*.* )
 			;;
@@ -38,15 +41,18 @@ is_valid_url() {
 }
 
 exit_with_error() {
-	printf '%s\n' "$1" 1>&2
+	message="$1"
+
+	printf '%s\n' "$message" 1>&2
 	exit 1
 }
 
 # ---Dispatch handlers---
 dispatch_file() {
+	file="$2"
+
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
-	file="$2"
 	if [ "$file" = "-" ]; then
 		curl -sS "-Ffile=@-" "http://0x0.st" # Read file from stdin
 	else
@@ -58,19 +64,20 @@ dispatch_file() {
 }
 
 dispatch_url() {
-	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
-
 	url="$2"
+
+	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
 	curl -sS "-Furl=$url" "https://0x0.st"
 }
 
 dispatch_shorten() {
-	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
-
 	url="$2"
+
+	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
+
 	curl -sS "-Fshorten=$url" "https://0x0.st"
 }
 
