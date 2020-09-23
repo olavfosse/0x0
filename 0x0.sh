@@ -33,7 +33,7 @@ is_valid_url() {
 	url="$1"
 
 	case "$url" in
-		https://*.* | https://*.* )
+		http://*.* | https://*.* )
 			;;
 		* )
 			return 1
