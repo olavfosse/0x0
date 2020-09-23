@@ -1,1 +1,1 @@
-set -A complete_0x0_1 file url shorten help -h --help
+set -A complete_0x0_1 file url shorten
