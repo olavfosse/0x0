@@ -190,7 +190,25 @@ case "$actual_output" in
 		fail
 esac
 
-# ---Report---
+# Test 9
+# HACK I was not able to escape the command properly, so the literal command is repeated in two lines
+assertion='Error message is printed when curl not in PATH'
+expected_output='error: curl: not found'
+actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh 2>&1)"
+
+if [ ! "$actual_output" = "$expected_output" ]; then
+		echo '---ASSERTION---'
+		echo "$assertion"
+		echo '---COMMAND---'
+		echo "$command"
+		echo "SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh"
+		echo '---EXPECTED OUTPUT---'
+		echo "$expected_output"
+		echo '---ACTUAL OUTPUT---'
+		echo "$actual_output"
+		fail
+fi
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'

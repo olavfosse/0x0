@@ -79,6 +79,9 @@ dispatch() {
 }
 
 # ---Entry point---
-is_in_path curl || exit_with_error 'error: curl: not found'
+#|| [ SIMULATE_CURL_NOT_IN_PATH = true ];
+if ! is_in_path curl || [ "$SIMULATE_CURL_NOT_IN_PATH" = true ]; then
+	exit_with_error 'error: curl: not found'
+fi
 
 dispatch "$@"
