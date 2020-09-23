@@ -157,6 +157,20 @@ if [ ! "$actual_output" = "$expected_output" ]; then
 		fail
 fi
 
+# Test 10
+assertion='Error message is printed when attempt to upload url with no protocol'
+command="./0x0.sh url fossegr.im"
+expected_output="error: invalid url"
+
+test_exact "$assertion" "$command" "$expected_output"
+
+# Test 11
+assertion='Error message is printed when attempt to upload url with domain extension'
+command="./0x0.sh url https://fossegr"
+expected_output="error: invalid url"
+
+test_exact "$assertion" "$command" "$expected_output"
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'

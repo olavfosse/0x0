@@ -27,6 +27,16 @@ is_in_path() {
 	return "$?"
 }
 
+is_valid_url() {
+	url="$1"
+	case "$url" in
+		https://*.* | https://*.* )
+			;;
+		* )
+			return 1
+	esac
+}
+
 exit_with_error() {
 	printf '%s\n' "$1" 1>&2
 	exit 1
@@ -51,6 +61,8 @@ dispatch_url() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	url="$2"
+	is_valid_url "$url" || exit_with_error 'error: invalid url'
+
 	curl -sS "-Furl=$url" "https://0x0.st"
 }
 
@@ -58,6 +70,7 @@ dispatch_shorten() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	url="$2"
+	is_valid_url "$url" || exit_with_error 'error: invalid url'
 	curl -sS "-Fshorten=$url" "https://0x0.st"
 }
 
