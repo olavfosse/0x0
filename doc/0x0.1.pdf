@@ -1,0 +1,1092 @@
+%PDF-1.1
+1 0 obj
+<<
+>>
+endobj
+3 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F0
+/BaseFont /Times-Roman
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Times-Bold
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Times-Italic
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Times-BoldItalic
+>>
+endobj
+7 0 obj
+<<
+/Length 8 0 R
+>>
+stream
+BT
+/F1 11 Tf
+68.024 702.988 Td
+(NAME) Tj
+ET
+BT
+/F1 11 Tf
+81.774 687.599 Td
+(0x0) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+101.024 687.599 Td
+(-) Tj
+ET
+BT
+/F0 11 Tf
+107.437 687.599 Td
+(interface) Tj
+ET
+BT
+/F0 11 Tf
+148.665 687.599 Td
+(with) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+170.973 687.599 Td
+(https://0x0.st) Tj
+ET
+BT
+/F1 11 Tf
+68.024 656.821 Td
+(SYNOPSIS) Tj
+ET
+BT
+/F1 11 Tf
+81.774 641.432 Td
+(0x0) Tj
+ET
+BT
+/F1 11 Tf
+101.024 641.432 Td
+(file) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+118.437 641.432 Td
+(file) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 626.043 Td
+(0x0) Tj
+ET
+BT
+/F1 11 Tf
+101.024 626.043 Td
+(url) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+117.832 626.043 Td
+(URL) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 610.654 Td
+(0x0) Tj
+ET
+BT
+/F1 11 Tf
+101.024 610.654 Td
+(shorten) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+139.216 610.654 Td
+(URL) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.024 579.876 Td
+(DESCRIPTION) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 564.487 Td
+(The) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+101.629 564.487 Td
+(0x0) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+120.879 564.487 Td
+(utility) Tj
+ET
+BT
+/F0 11 Tf
+149.919 564.487 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+160.006 564.487 Td
+(an) Tj
+ET
+BT
+/F0 11 Tf
+173.140 564.487 Td
+(interface) Tj
+ET
+BT
+/F0 11 Tf
+214.368 564.487 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+225.676 564.487 Td
+(the) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+241.868 564.487 Td
+(https://0x0.st) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+305.426 564.487 Td
+(file) Tj
+ET
+BT
+/F0 11 Tf
+322.839 564.487 Td
+(hosting) Tj
+ET
+BT
+/F0 11 Tf
+357.984 564.487 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+376.618 564.487 Td
+(URL) Tj
+ET
+BT
+/F0 11 Tf
+401.368 564.487 Td
+(shortening) Tj
+ET
+BT
+/F0 11 Tf
+450.560 564.487 Td
+(service.) Tj
+ET
+BT
+/F0 11 Tf
+81.774 533.709 Td
+(The) Tj
+ET
+BT
+/F0 11 Tf
+101.629 533.709 Td
+(following) Tj
+ET
+BT
+/F0 11 Tf
+147.158 533.709 Td
+(commands) Tj
+ET
+BT
+/F0 11 Tf
+197.571 533.709 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+213.752 533.709 Td
+(available.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 502.931 Td
+(file) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+99.187 502.931 Td
+(file) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+119.669 502.931 Td
+(Upload) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+154.803 502.931 Td
+(file) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+168.861 502.931 Td
+(.) Tj
+ET
+BT
+/F0 11 Tf
+177.111 502.931 Td
+(If) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+187.187 502.931 Td
+(file) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+203.995 502.931 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+214.082 502.931 Td
+(-,) Tj
+ET
+BT
+/F0 11 Tf
+223.245 502.931 Td
+(input) Tj
+ET
+BT
+/F0 11 Tf
+248.611 502.931 Td
+(will) Tj
+ET
+BT
+/F0 11 Tf
+268.477 502.931 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+281.611 502.931 Td
+(read) Tj
+ET
+BT
+/F0 11 Tf
+303.292 502.931 Td
+(from) Tj
+ET
+BT
+/F0 11 Tf
+327.426 502.931 Td
+(stdin.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 472.153 Td
+(url) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+98.582 472.153 Td
+(URL) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+120.274 456.764 Td
+(Upload) Tj
+ET
+BT
+/F0 11 Tf
+155.408 456.764 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+171.600 456.764 Td
+(remote) Tj
+ET
+BT
+/F0 11 Tf
+204.897 456.764 Td
+(file) Tj
+ET
+BT
+/F0 11 Tf
+222.310 456.764 Td
+(at) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+233.002 456.764 Td
+(URL) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+253.781 456.764 Td
+(.) Tj
+ET
+BT
+/F0 11 Tf
+262.031 456.764 Td
+(Supported) Tj
+ET
+BT
+/F0 11 Tf
+310.002 456.764 Td
+(protocols) Tj
+ET
+BT
+/F0 11 Tf
+353.694 456.764 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+369.875 456.764 Td
+(http) Tj
+ET
+BT
+/F0 11 Tf
+389.741 456.764 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+408.375 456.764 Td
+(https.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 425.986 Td
+(shorten) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+119.966 425.986 Td
+(URL) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+120.274 410.597 Td
+(Shorten) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+157.245 410.597 Td
+(URL) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+178.024 410.597 Td
+(,) Tj
+ET
+BT
+/F0 11 Tf
+183.524 410.597 Td
+(i.e) Tj
+ET
+BT
+/F0 11 Tf
+196.966 410.597 Td
+(return) Tj
+ET
+BT
+/F0 11 Tf
+225.984 410.597 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+233.618 410.597 Td
+(short) Tj
+ET
+BT
+/F0 11 Tf
+258.368 410.597 Td
+(URL) Tj
+ET
+BT
+/F0 11 Tf
+283.118 410.597 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+302.368 410.597 Td
+(redirects) Tj
+ET
+BT
+/F0 11 Tf
+342.991 410.597 Td
+(to) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+354.299 410.597 Td
+(URL) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+377.828 410.597 Td
+(when) Tj
+ET
+BT
+/F0 11 Tf
+404.404 410.597 Td
+(opened.) Tj
+ET
+BT
+/F0 11 Tf
+444.422 410.597 Td
+(Supported) Tj
+ET
+BT
+/F0 11 Tf
+492.393 410.597 Td
+(protocols) Tj
+ET
+BT
+/F0 11 Tf
+120.274 395.208 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+136.455 395.208 Td
+(http) Tj
+ET
+BT
+/F0 11 Tf
+156.321 395.208 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+174.955 395.208 Td
+(https.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.024 364.430 Td
+(EXIT) Tj
+ET
+BT
+/F1 11 Tf
+97.669 364.430 Td
+(STATUS) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 349.041 Td
+(The) Tj
+ET
+BT
+/F0 11 Tf
+101.629 349.041 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+120.879 349.041 Td
+(utility) Tj
+ET
+BT
+/F0 11 Tf
+149.919 349.041 Td
+(exits) Tj
+ET
+BT
+/F0 11 Tf
+173.448 349.041 Td
+(0) Tj
+ET
+BT
+/F0 11 Tf
+181.698 349.041 Td
+(on) Tj
+ET
+BT
+/F0 11 Tf
+195.448 349.041 Td
+(upload/shortening,) Tj
+ET
+BT
+/F0 11 Tf
+280.390 349.041 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+299.024 349.041 Td
+(1) Tj
+ET
+BT
+/F0 11 Tf
+307.274 349.041 Td
+(if) Tj
+ET
+BT
+/F0 11 Tf
+316.745 349.041 Td
+(an) Tj
+ET
+BT
+/F0 11 Tf
+329.879 349.041 Td
+(error) Tj
+ET
+BT
+/F0 11 Tf
+354.002 349.041 Td
+(occurs.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.024 318.263 Td
+(EXAMPLES) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 302.874 Td
+(Upload) Tj
+ET
+BT
+/F0 11 Tf
+116.908 302.874 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+133.100 302.874 Td
+(source) Tj
+ET
+BT
+/F0 11 Tf
+164.560 302.874 Td
+(code) Tj
+ET
+BT
+/F0 11 Tf
+188.078 302.874 Td
+(of) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+199.991 302.874 Td
+(0x0) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+216.491 302.874 Td
+(:) Tj
+ET
+BT
+/F0 11 Tf
+98.274 272.096 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+106.524 272.096 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+125.774 272.096 Td
+(file) Tj
+ET
+BT
+/F0 11 Tf
+143.187 272.096 Td
+("$\(which) Tj
+ET
+BT
+/F0 11 Tf
+186.472 272.096 Td
+(0x0\)") Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+98.274 256.707 Td
+(https://0x0.st/iU8B.bin) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 225.929 Td
+(Upload) Tj
+ET
+BT
+/F0 11 Tf
+116.908 225.929 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+124.542 225.929 Td
+(diff:) Tj
+ET
+BT
+/F0 11 Tf
+98.274 195.151 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+106.524 195.151 Td
+(diff) Tj
+ET
+BT
+/F0 11 Tf
+125.158 195.151 Td
+(old) Tj
+ET
+BT
+/F0 11 Tf
+141.966 195.151 Td
+(new) Tj
+ET
+BT
+/F0 11 Tf
+163.042 195.151 Td
+(|) Tj
+ET
+BT
+/F0 11 Tf
+167.992 195.151 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+187.242 195.151 Td
+(file) Tj
+ET
+BT
+/F0 11 Tf
+204.655 195.151 Td
+(-) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+98.274 179.762 Td
+(https://0x0.st/iU8L.txt) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 148.984 Td
+(Upload) Tj
+ET
+BT
+/F0 11 Tf
+116.908 148.984 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+124.542 148.984 Td
+(remote) Tj
+ET
+BT
+/F0 11 Tf
+157.839 148.984 Td
+(file:) Tj
+ET
+BT
+/F0 11 Tf
+98.274 118.206 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+106.524 118.206 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+125.774 118.206 Td
+(url) Tj
+ET
+BT
+/F0 11 Tf
+140.745 118.206 Td
+(http://www.openbsd.org/art/puffy/ppuf800X725.gif) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+98.274 102.817 Td
+(https://0x0.st/iU8n.gif) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+68.024 739.233 Td
+(0X0\(1\)) Tj
+ET
+BT
+/F0 11 Tf
+245.498 739.233 Td
+(General) Tj
+ET
+BT
+/F0 11 Tf
+283.063 739.233 Td
+(Commands) Tj
+ET
+BT
+/F0 11 Tf
+335.929 739.233 Td
+(Manual) Tj
+ET
+BT
+/F0 11 Tf
+512.490 739.233 Td
+(0X0\(1\)) Tj
+ET
+BT
+/F0 11 Tf
+68.024 36.245 Td
+(OpenBSD) Tj
+ET
+BT
+/F0 11 Tf
+115.995 36.245 Td
+(6.7) Tj
+ET
+BT
+/F0 11 Tf
+263.362 36.245 Td
+(September) Tj
+ET
+BT
+/F0 11 Tf
+313.159 36.245 Td
+(25,) Tj
+ET
+BT
+/F0 11 Tf
+329.659 36.245 Td
+(2020) Tj
+ET
+BT
+/F0 11 Tf
+482.537 36.245 Td
+(OpenBSD) Tj
+ET
+BT
+/F0 11 Tf
+530.508 36.245 Td
+(6.7) Tj
+ET
+endstream
+endobj
+8 0 obj
+7388
+endobj
+9 0 obj
+<<
+/ProcSet [/PDF /Text]
+/Font <<
+/F0 3 0 R
+/F1 4 0 R
+/F2 5 0 R
+/F3 6 0 R
+>>
+>>
+endobj
+10 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources 9 0 R
+/Contents 7 0 R
+>>
+endobj
+11 0 obj
+<<
+/Length 12 0 R
+>>
+stream
+BT
+/F0 11 Tf
+81.774 702.988 Td
+(Shorten) Tj
+ET
+BT
+/F0 11 Tf
+118.745 702.988 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+126.379 702.988 Td
+(URL:) Tj
+ET
+BT
+/F0 11 Tf
+98.274 672.210 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+106.524 672.210 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+125.774 672.210 Td
+(shorten) Tj
+ET
+BT
+/F0 11 Tf
+160.908 672.210 Td
+(https://why-openbsd.rocks) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+98.274 656.821 Td
+(https://0x0.st/PmsW) Tj
+ET
+BT
+/F1 11 Tf
+68.024 626.043 Td
+(SEE) Tj
+ET
+BT
+/F1 11 Tf
+91.564 626.043 Td
+(ALSO) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 610.654 Td
+(curl\(1\)) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 579.876 Td
+(https://0x0.st/) Tj
+ET
+BT
+/F1 11 Tf
+68.024 549.098 Td
+(AUTHORS) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 533.709 Td
+(Olav) Tj
+ET
+BT
+/F0 11 Tf
+105.908 533.709 Td
+(Fosse) Tj
+ET
+BT
+/F0 11 Tf
+133.716 533.709 Td
+(<) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+139.920 533.709 Td
+(fosseolav@gmail.com) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+237.116 533.709 Td
+(>) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+68.024 739.233 Td
+(0X0\(1\)) Tj
+ET
+BT
+/F0 11 Tf
+245.498 739.233 Td
+(General) Tj
+ET
+BT
+/F0 11 Tf
+283.063 739.233 Td
+(Commands) Tj
+ET
+BT
+/F0 11 Tf
+335.929 739.233 Td
+(Manual) Tj
+ET
+BT
+/F0 11 Tf
+512.490 739.233 Td
+(0X0\(1\)) Tj
+ET
+BT
+/F0 11 Tf
+68.024 36.245 Td
+(OpenBSD) Tj
+ET
+BT
+/F0 11 Tf
+115.995 36.245 Td
+(6.7) Tj
+ET
+BT
+/F0 11 Tf
+263.362 36.245 Td
+(September) Tj
+ET
+BT
+/F0 11 Tf
+313.159 36.245 Td
+(25,) Tj
+ET
+BT
+/F0 11 Tf
+329.659 36.245 Td
+(2020) Tj
+ET
+BT
+/F0 11 Tf
+482.537 36.245 Td
+(OpenBSD) Tj
+ET
+BT
+/F0 11 Tf
+530.508 36.245 Td
+(6.7) Tj
+ET
+endstream
+endobj
+12 0 obj
+1490
+endobj
+13 0 obj
+<<
+/ProcSet [/PDF /Text]
+/Font <<
+/F0 3 0 R
+/F1 4 0 R
+/F2 5 0 R
+/F3 6 0 R
+>>
+>>
+endobj
+14 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources 13 0 R
+/Contents 11 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/MediaBox [0 0 612 790]
+/Count 2
+/Kids [ 10 0 R 14 0 R]
+>>
+endobj
+15 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000009 00000 n 
+0000009743 00000 n 
+0000000030 00000 n 
+0000000112 00000 n 
+0000000193 00000 n 
+0000000276 00000 n 
+0000000363 00000 n 
+0000007803 00000 n 
+0000007823 00000 n 
+0000007918 00000 n 
+0000007999 00000 n 
+0000009543 00000 n 
+0000009564 00000 n 
+0000009660 00000 n 
+0000009833 00000 n 
+trailer
+<<
+/Size 16
+/Root 15 0 R
+/Info 1 0 R
+>>
+startxref
+9883
+%%EOF
