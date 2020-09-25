@@ -47,7 +47,7 @@
 <table class="Nm">
   <tr>
     <td><code class="Nm">0x0 <code class="Cm">url</code>
-      <var class="Ar">url</var></code></td>
+      <var class="Ar">URL</var></code></td>
     <td></td>
   </tr>
 </table>
@@ -55,7 +55,7 @@
 <table class="Nm">
   <tr>
     <td><code class="Nm">0x0 <code class="Cm">shorten</code>
-      <var class="Ar">url</var></code></td>
+      <var class="Ar">URL</var></code></td>
     <td></td>
   </tr>
 </table>
@@ -63,7 +63,7 @@
 <section class="Sh">
 <h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">The <code class="Nm">0x0</code> utility is an interface to the
-    <a class="Lk" href="https://0x0.st">https://0x0.st</a> file sharing and url
+    <a class="Lk" href="https://0x0.st">https://0x0.st</a> file sharing and URL
     shortening service.</p>
 <p class="Pp">The following commands are available.</p>
 <dl class="Bl-tag">
@@ -72,13 +72,13 @@
   <dd>Upload <var class="Ar">file</var>. If <var class="Ar">file</var> is -,
       input will be read from stdin.</dd>
   <dt id="url"><a class="permalink" href="#url"><code class="Cm">url</code></a>
-    <var class="Ar">url</var></dt>
-  <dd>Upload the remote file at <var class="Ar">url</var>. Supported protocols
+    <var class="Ar">URL</var></dt>
+  <dd>Upload the remote file at <var class="Ar">URL</var>. Supported protocols
       are http and https.</dd>
   <dt id="shorten"><a class="permalink" href="#shorten"><code class="Cm">shorten</code></a>
-    <var class="Ar">url</var></dt>
-  <dd>Shorten <var class="Ar">url</var>, i.e return a short url that redirects
-      to <var class="Ar">url</var> when opened. Supported protocols are http and
+    <var class="Ar">URL</var></dt>
+  <dd>Shorten <var class="Ar">URL</var>, i.e return a short URL that redirects
+      to <var class="Ar">URL</var> when opened. Supported protocols are http and
       https.</dd>
 </dl>
 </section>
@@ -111,7 +111,7 @@ $ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
 <a class="Lk" href="https://0x0.st/iU8n.gif">https://0x0.st/iU8n.gif</a>
 </pre>
 </div>
-<p class="Pp">Shorten a url:</p>
+<p class="Pp">Shorten a URL:</p>
 <div class="Bd Pp Bd-indent">
 <pre>
 $ 0x0 shorten https://why-openbsd.rocks

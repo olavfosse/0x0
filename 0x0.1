@@ -22,14 +22,14 @@
 .Lk https://0x0.st
 .Sh SYNOPSIS
 .Nm 0x0 Cm file Ar file
-.Nm 0x0 Cm url Ar url
-.Nm 0x0 Cm shorten Ar url
+.Nm 0x0 Cm url Ar URL
+.Nm 0x0 Cm shorten Ar URL
 .Sh DESCRIPTION
 The
 .Nm
 utility is an interface to the
 .Lk https://0x0.st
-file sharing and url shortening service.
+file sharing and URL shortening service.
 .Pp
 The following commands are available.
 .Bl -tag -width Ds
@@ -39,15 +39,15 @@ Upload
 If
 .Ar file
 is -, input will be read from stdin.
-.It Cm url Ar url
+.It Cm url Ar URL
 Upload the remote file at
-.Ar url .
+.Ar URL .
 Supported protocols are http and https.
-.It Cm shorten Ar url
+.It Cm shorten Ar URL
 Shorten
-.Ar url ,
-i.e return a short url that redirects to
-.Ar url
+.Ar URL ,
+i.e return a short URL that redirects to
+.Ar URL
 when opened.
 Supported protocols are http and https.
 .El
@@ -73,7 +73,7 @@ $ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
 .Lk https://0x0.st/iU8n.gif
 .Ed
 .Pp
-Shorten a url:
+Shorten a URL:
 .Bd -literal -offset indent
 $ 0x0 shorten https://why-openbsd.rocks
 .Lk https://0x0.st/PmsW
