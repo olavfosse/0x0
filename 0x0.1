@@ -1,0 +1,84 @@
+.\"
+.\" Copyright (c) 2020 Olav Fosse <fosseolav@gmail.com>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd September 25, 2020
+.Dt 0X0 1
+.Os
+.Sh NAME
+.Nm 0x0
+.Nd interface with
+.Lk https://0x0.st
+.Sh SYNOPSIS
+.Nm 0x0 Cm file Ar file
+.Nm 0x0 Cm url Ar url
+.Nm 0x0 Cm shorten Ar url
+.Sh DESCRIPTION
+The
+.Nm
+utility is an interface to the https://0x0.st file sharing and url shortening service.
+.Pp
+The following commands are available.
+.Bl -tag -width Ds
+.It Cm file Ar file
+Upload
+.Ar file .
+If
+.Ar file
+is -, input will be read from stdin.
+.It Cm url Ar url
+Upload the remote file at
+.Ar url .
+Supported protocols are http and https.
+.It Cm shorten Ar url
+Shorten
+.Ar url ,
+i.e return a short url that redirects to
+.Ar url
+when opened.
+Supported protocols are http and https.
+.El
+.Sh EXIT STATUS
+The 0x0 utility exits 0 on upload/shortening, and 1 if an error occurs.
+.Sh EXAMPLES
+Upload the source code of
+.Nm :
+.Bd -literal -offset indent
+$ 0x0 file "$(which 0x0)"
+.Lk https://0x0.st/iU8B.bin
+.Ed
+.Pp
+Upload a diff:
+.Bd -literal -offset indent
+$ diff old new | 0x0 file -
+.Lk https://0x0.st/iU8L.txt
+.Ed
+.Pp
+Upload a remote file:
+.Bd -literal -offset indent
+$ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
+.Lk https://0x0.st/iU8n.gif
+.Ed
+.Pp
+Shorten a url:
+.Bd -literal -offset indent
+$ 0x0 shorten https://why-openbsd.rocks
+.Lk https://0x0.st/PmsW
+.Ed
+.Sh SEE ALSO
+.Xr curl 1
+.Pp
+.Lk https://0x0.st/
+.Sh AUTHORS
+.An Olav Fosse Aq Mt fosseolav@gmail.com

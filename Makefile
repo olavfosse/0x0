@@ -7,3 +7,8 @@ lint:
 
 test:
 	./test.sh
+
+doc:
+	mandoc -Tlint -Wstyle 0x0.1
+	mandoc -Thtml 0x0.1 > index.html
+	mandoc 0x0.1 | less
