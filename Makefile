@@ -15,5 +15,5 @@ test:
 
 doc:
 	mandoc -Tlint -Wstyle 0x0.1
-	mandoc -Thtml 0x0.1 > index.html
+	mandoc -Thtml -O style=mandoc.css 0x0.1 > index.html
 	mandoc 0x0.1 | less
