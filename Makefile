@@ -1,5 +1,6 @@
 install:
 	install -o root 0x0.sh /usr/local/bin/0x0
+	install -o root 0x0.1 /usr/local/man/man1/
 
 lint:
 	shellcheck test.sh
