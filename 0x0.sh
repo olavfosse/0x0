@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 # Copyright (c) 2020 Olav Fosse
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -12,6 +13,7 @@
 # LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 # OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 # PERFORMANCE OF THIS SOFTWARE.
+#
 
 # ---Constants---
 USAGE="$(cat << EOF
