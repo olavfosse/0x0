@@ -78,7 +78,7 @@ test_pattern () {
 
 # ---Tests---
 # Test 1
-assertion='Error message is printed when too few arguments are passed'
+assertion='Error when too few arguments are passed'
 command='./0x0.sh file'
 expected_output="$USAGE"
 expected_exit_code=1
@@ -86,7 +86,7 @@ expected_exit_code=1
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 2
-assertion='Error message is printed when too many arguments are passed'
+assertion='Error when too many arguments are passed'
 command='./0x0.sh file file1 file2'
 expected_output="$USAGE"
 expected_exit_code=1
@@ -155,7 +155,7 @@ expected_exit_code=0
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 # Test 7
-assertion='Error message is printed when attempt to upload non-existant file'
+assertion='Error when attempt to upload non-existant file'
 file="/tmp/non-existant-file"
 command="./0x0.sh file $file"
 expected_output="error: $file does not exist"
@@ -164,7 +164,7 @@ expected_exit_code=1
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 8
-assertion='Error message is printed when attempt to upload directory'
+assertion='Error when attempt to upload directory'
 directory="/tmp/"
 command="./0x0.sh file $directory"
 expected_output="error: $directory is a directory"
@@ -174,7 +174,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 9
 # HACK I was not able to escape the command properly, so the test helpers cannot be used
-assertion='Error message is printed when curl not in PATH'
+assertion='Error when curl not in PATH'
 expected_output='error: curl: not found'
 expected_exit_code=1
 actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh 2>&1)"
@@ -198,7 +198,7 @@ if [ ! "$actual_output" = "$expected_output" ] || [ ! "$actual_exit_code" = "$ex
 fi
 
 # Test 10
-assertion='Error message is printed when attempt to upload url with no protocol'
+assertion='Error when attempt to upload url with no protocol'
 command="./0x0.sh url fossegr.im"
 expected_output="error: invalid url"
 expected_exit_code=1
@@ -206,7 +206,7 @@ expected_exit_code=1
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 11
-assertion='Error message is printed when attempt to upload url with domain extension'
+assertion='Error when attempt to upload url without domain extension'
 command="./0x0.sh url https://fossegr"
 expected_output="error: invalid url"
 expected_exit_code=1
