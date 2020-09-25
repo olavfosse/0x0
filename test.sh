@@ -43,6 +43,7 @@ test_pattern () {
 	expected_output_pattern="$3"
 	actual_output="$($command 2>&1)"
 
+	# shellcheck disable=SC2254
 	case "$actual_output" in
 		$expected_output_pattern)
 			;;
@@ -80,6 +81,7 @@ assertion='File is uploaded from stdin'
 expected_output_pattern='http://0x0.st/*.txt'
 actual_output="$(echo "I want to share this with my friends on irc" | ./0x0.sh file - 2>&1)"
 
+# shellcheck disable=SC2254
 case "$actual_output" in
 	$expected_output_pattern)
 		;;
