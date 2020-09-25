@@ -2,6 +2,10 @@ install:
 	install -o root 0x0.sh /usr/local/bin/0x0
 	install -o root 0x0.1 /usr/local/man/man1/
 
+uninstall:
+	rm /usr/local/bin/0x0
+	rm /usr/local/man/man1/0x0.1
+
 lint:
 	shellcheck test.sh
 	shellcheck 0x0.sh
