@@ -26,13 +26,13 @@ test_exact () {
 
 	if [ ! "$actual_output" = "$expected_output" ]; then
 		echo '---ASSERTION---'
-		echo "$assertion"
+		printf '"%s"\n' "$assertion"
 		echo '---COMMAND---'
-		echo "$command"
+		printf '"%s"\n' "$command"
 		echo '---EXPECTED OUTPUT---'
-		echo "$expected_output"
+		printf '"%s"\n' "$expected_output"
 		echo '---ACTUAL OUTPUT---'
-		echo "$actual_output"
+		printf '"%s"\n' "$actual_output"
 		fail
 	fi
 }
@@ -48,13 +48,13 @@ test_pattern () {
 			;;
 		*)
 			echo '---ASSERTION---'
-			echo "$assertion"
+			printf '"%s"\n' "$assertion"
 			echo '---COMMAND---'
-			echo "$command"
+			printf '"%s"\n' "$command"
 			echo '---EXPECTED OUTPUT PATTERN---'
-			echo "$expected_output_pattern"
+			printf '"%s"\n' "$expected_output_pattern"
 			echo '---ACTUAL OUTPUT---'
-			echo "$actual_output"
+			printf '"%s"\n' "$actual_output"
 			fail
 	esac
 }
@@ -85,13 +85,13 @@ case "$actual_output" in
 		;;
 	*)
 		echo '---ASSERTION---'
-		echo "$assertion"
+		printf '"%s"\n' "$assertion"
 		echo '---COMMAND---'
-		echo 'echo "I want to share this with my friends on irc" | ./0x0.sh file -'
+		printf '"%s"\n' 'echo "I want to share this with my friends on irc" | ./0x0.sh file -'
 		echo '---EXPECTED OUTPUT PATTERN---'
-		echo "$expected_output_pattern"
+		printf '"%s"\n' "$expected_output_pattern"
 		echo '---ACTUAL OUTPUT---'
-		echo "$actual_output"
+		printf '"%s"\n' "$actual_output"
 		fail
 esac
 
@@ -144,14 +144,14 @@ actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh 2>&1)"
 
 if [ ! "$actual_output" = "$expected_output" ]; then
 		echo '---ASSERTION---'
-		echo "$assertion"
+		printf '"%s"\n' "$assertion"
 		echo '---COMMAND---'
-		echo "$command"
-		echo "SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh"
+		# shellcheck disable=SC2016
+		printf '"%s"\n' '$SIMULATE_CURL_NOT_IN_PATH=true ./0x0.sh'
 		echo '---EXPECTED OUTPUT---'
-		echo "$expected_output"
+		printf '"%s"\n' "$expected_output"
 		echo '---ACTUAL OUTPUT---'
-		echo "$actual_output"
+		printf '"%s"\n' "$actual_output"
 		fail
 fi
 
