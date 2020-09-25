@@ -96,7 +96,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 # Test 3
 # HACK I was not able to escape the command properly, so the test helpers cannot be used
 assertion='File is uploaded from stdin'
-expected_output_pattern='http://0x0.st/*.txt'
+expected_output_pattern='https://0x0.st/*.txt'
 expected_exit_code=0
 actual_output="$(echo "I want to share this with my friends on irc" | ./0x0.sh file - 2>&1)"
 actual_exit_code="$?"
@@ -130,7 +130,7 @@ esac
 assertion='File is uploaded from disk'
 file_name='/tmp/0x0.sh.temp'
 command="./0x0.sh file $file_name"
-expected_output_pattern='http://0x0.st/*.temp'
+expected_output_pattern='https://0x0.st/*.temp'
 expected_exit_code=0
 
 echo '#!/bin/sh' >> "$file_name"
@@ -209,6 +209,14 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 assertion='Error message is printed when attempt to upload url with domain extension'
 command="./0x0.sh url https://fossegr"
 expected_output="error: invalid url"
+expected_exit_code=1
+
+test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+# Test 12
+assertion='500 Internal Server Error when non existant, but valid url is uploaded'
+command='./0x0.sh url https://non.existant.website'
+expected_output='error: 500 Internal Server Error'
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"

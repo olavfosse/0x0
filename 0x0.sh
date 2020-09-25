@@ -47,6 +47,41 @@ exit_with_error() {
 	exit 1
 }
 
+get_full_status_code() {
+	numeral_status_code="$1"
+
+	case "$numeral_status_code" in
+		400)
+			printf '400 Bad Request'
+			;;
+		403)
+			printf '403 Forbidden'
+			;;
+		500)
+			printf '500 Internal Server Error'
+			;;
+		*)
+			# Fallback to numeral status code
+			printf '%s' "$1"
+	esac
+}
+
+request() {
+	form_string="$1" # -Fkey=[@]value
+
+	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")"
+	code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
+	response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
+
+	case "$code" in
+		4** | 5**)
+			exit_with_error "error: $(get_full_status_code "$code")"
+			;;
+		*)
+			echo "$response"
+	esac
+}
+
 # ---Dispatch handlers---
 dispatch_file() {
 	file="$2"
@@ -54,12 +89,12 @@ dispatch_file() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	if [ "$file" = "-" ]; then
-		curl -sS "-Ffile=@-" "http://0x0.st" # Read file from stdin
+		request "-Ffile=@-" # Read file from stdin
 	else
 		[ ! -e "$file" ] && exit_with_error "error: $file does not exist"
 		[ -d "$file" ] && exit_with_error "error: $file is a directory"
 
-		curl -sS "-Ffile=@$file" "http://0x0.st"
+		request "-Ffile=@$file"
 	fi
 }
 
@@ -69,7 +104,7 @@ dispatch_url() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	curl -sS "-Furl=$url" "https://0x0.st"
+	request "-Furl=$url"
 }
 
 dispatch_shorten() {
@@ -78,7 +113,7 @@ dispatch_shorten() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	curl -sS "-Fshorten=$url" "https://0x0.st"
+	request "-Fshorten=$url"
 }
 
 # ---Dispatcher---
@@ -99,7 +134,6 @@ dispatch() {
 }
 
 # ---Entry point---
-#|| [ SIMULATE_CURL_NOT_IN_PATH = true ];
 if ! is_in_path curl || [ "$SIMULATE_CURL_NOT_IN_PATH" = true ]; then
 	exit_with_error 'error: curl: not found'
 fi
