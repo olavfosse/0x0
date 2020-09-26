@@ -22,6 +22,8 @@ usage:	0x0 file filename
 	0x0 shorten URL
 EOF
 )"
+ 
+PATH0X0="./src/0x0"
 
 # ---Globals---
 ALL_GREEN=true
@@ -95,7 +97,7 @@ test_pattern () {
 # ---Tests---
 # Test 1
 assertion='Error when too few arguments are passed'
-command='./0x0 file'
+command="$PATH0X0 file"
 expected_output="$USAGE"
 expected_exit_code=1
 
@@ -103,7 +105,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 2
 assertion='Error when too many arguments are passed'
-command='./0x0 file file1 file2'
+command="$PATH0X0 file file1 file2"
 expected_output="$USAGE"
 expected_exit_code=1
 
@@ -114,14 +116,14 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 assertion='File is uploaded from stdin'
 expected_output_pattern='https://0x0.st/*.txt'
 expected_exit_code=0
-actual_output="$(echo "I want to share this with my friends on irc" | ./0x0 file - 2>&1)"
+actual_output="$(echo "I want to share this with my friends on irc" | $PATH0X0 file - 2>&1)"
 actual_exit_code="$?"
 
 local_fail() {
 	echo '---ASSERTION---'
 	printf '"%s"\n' "$assertion"
 	echo '---COMMAND---'
-	printf '"%s"\n' 'echo "I want to share this with my friends on irc" | ./0x0 file -'
+	printf '"%s"\n' 'echo "I want to share this with my friends on irc" | $PATH0X0 file -'
 	echo '---EXPECTED OUTPUT PATTERN---'
 	printf '"%s"\n' "$expected_output_pattern"
 	echo '---ACTUAL OUTPUT---'
@@ -145,7 +147,7 @@ esac
 # Test 4
 assertion='File is uploaded from disk'
 file_name='/tmp/0x0.temp'
-command="./0x0 file $file_name"
+command="$PATH0X0 file $file_name"
 expected_output_pattern='https://0x0.st/*.temp'
 expected_exit_code=0
 
@@ -156,7 +158,7 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 
 # Test 5
 assertion='File is uploaded from URL'
-command="./0x0 url https://fossegr.im"
+command="$PATH0X0 url https://fossegr.im"
 expected_output_pattern='https://0x0.st/*.html'
 expected_exit_code=0
 
@@ -164,7 +166,7 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 
 # Test 6
 assertion='URL is shortened'
-command="./0x0 shorten https://fossegr.im/"
+command="$PATH0X0 shorten https://fossegr.im/"
 expected_output_pattern='https://0x0.st/*'
 expected_exit_code=0
 
@@ -173,7 +175,7 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 # Test 7
 assertion='Error when attempt to upload non-existant file'
 file="/tmp/non-existant-file"
-command="./0x0 file $file"
+command="$PATH0X0 file $file"
 expected_output="error: $file does not exist"
 expected_exit_code=1
 
@@ -182,7 +184,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 # Test 8
 assertion='Error when attempt to upload directory'
 directory="/tmp/"
-command="./0x0 file $directory"
+command="$PATH0X0 file $directory"
 expected_output="error: $directory is a directory"
 expected_exit_code=1
 
@@ -193,7 +195,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 assertion='Error when curl not in PATH'
 expected_output='error: curl: not found'
 expected_exit_code=1
-actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true ./0x0 2>&1)"
+actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true $PATH0X0 2>&1)"
 actual_exit_code="$?"
 
 if [ ! "$actual_output" = "$expected_output" ] || [ ! "$actual_exit_code" = "$expected_exit_code" ]; then
@@ -201,7 +203,7 @@ if [ ! "$actual_output" = "$expected_output" ] || [ ! "$actual_exit_code" = "$ex
 		printf '"%s"\n' "$assertion"
 		echo '---COMMAND---'
 		# shellcheck disable=SC2016
-		printf '"%s"\n' '$SIMULATE_CURL_NOT_IN_PATH=true ./0x0'
+		printf '"%s"\n' "SIMULATE_CURL_NOT_IN_PATH=true $PATH0X0"
 		echo '---EXPECTED OUTPUT---'
 		printf '"%s"\n' "$expected_output"
 		echo '---ACTUAL OUTPUT---'
@@ -215,7 +217,7 @@ fi
 
 # Test 10
 assertion='Error when attempt to upload url with no protocol'
-command="./0x0 url fossegr.im"
+command="$PATH0X0 url fossegr.im"
 expected_output="error: invalid url"
 expected_exit_code=1
 
@@ -223,7 +225,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 11
 assertion='Error when attempt to upload url without domain extension'
-command="./0x0 url https://fossegr"
+command="$PATH0X0 url https://fossegr"
 expected_output="error: invalid url"
 expected_exit_code=1
 
@@ -231,7 +233,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 12
 assertion='500 Internal Server Error when non existant, but valid url is uploaded'
-command='./0x0 url https://non.existant.website'
+command="$PATH0X0 url https://non.existant.website"
 expected_output='error: 500 Internal Server Error'
 expected_exit_code=1
 

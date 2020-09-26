@@ -30,7 +30,7 @@ cp  ./doc/0x0.1 "$man1" || exit 1
 
 bin='/usr/local/bin'
 mkdir -p /usr/local/bin || exit 1
-cp ./0x0 "$bin/0x0" || exit 1
+cp ./src/0x0 "$bin/0x0" || exit 1
 
 if [ "$(uname)" = OpenBSD ]; then
 	makewhatis '/usr/local/man/' || exit 1

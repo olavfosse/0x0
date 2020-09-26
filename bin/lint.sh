@@ -15,4 +15,4 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-shellcheck bin/* 0x0
+shellcheck bin/* src/*
