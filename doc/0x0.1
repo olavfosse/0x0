@@ -21,7 +21,7 @@
 .Nd interface with
 .Lk https://0x0.st
 .Sh SYNOPSIS
-.Nm 0x0 Cm file Ar file
+.Nm 0x0 Cm file Ar filename
 .Nm 0x0 Cm url Ar URL
 .Nm 0x0 Cm shorten Ar URL
 .Sh DESCRIPTION
@@ -33,11 +33,11 @@ file hosting and URL shortening service.
 .Pp
 The following commands are available.
 .Bl -tag -width Ds
-.It Cm file Ar file
-Upload
-.Ar file .
+.It Cm file Ar filename
+Upload the local file
+.Ar filename Ns \&.
 If
-.Ar file
+.Ar filename
 is -, input will be read from stdin.
 .It Cm url Ar URL
 Upload the remote file at

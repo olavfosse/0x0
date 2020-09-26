@@ -17,7 +17,7 @@
 
 # ---Constants---
 USAGE="$(cat << EOF
-usage:	0x0 file file
+usage:	0x0 file filename
 	0x0 url URL
 	0x0 shorten URL
 EOF
