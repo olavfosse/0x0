@@ -123,7 +123,7 @@ local_fail() {
 	echo '---ASSERTION---'
 	printf '"%s"\n' "$assertion"
 	echo '---COMMAND---'
-	printf '"%s"\n' 'echo "I want to share this with my friends on irc" | $PATH0X0 file -'
+	printf '"%s"\n' "echo "I want to share this with my friends on irc" | $PATH0X0 file -"
 	echo '---EXPECTED OUTPUT PATTERN---'
 	printf '"%s"\n' "$expected_output_pattern"
 	echo '---ACTUAL OUTPUT---'
@@ -243,7 +243,7 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 # curl -F treats commas and semicolons differently
 # this makes sure it is escaped properly
 assertion='Uploads file with semicolon and comma in filename'
-filename='/tmp/,dont;name,your;files,like;this,$filename'
+filename='/tmp/,dont;name,your;files,like;this,'
 echo 'Bad file name' > "$filename"
 command="$PATH0X0 file $filename"
 expected_output_pattern='https://0x0.st/*'
