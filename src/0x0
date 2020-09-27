@@ -74,6 +74,7 @@ form_string() {
 	type="$1" # file/url/shorten
 	file_or_url="$2"
 
+	# shellcheck disable=SC2039
 	if [ "$type" = file ]; then
 		printf '-Ffile=@"%s"' "$file_or_url"
 	else
