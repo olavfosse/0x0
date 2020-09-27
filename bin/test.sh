@@ -239,6 +239,18 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+# Test 13
+# curl -F treats commas and semicolons differently
+# this makes sure it is escaped properly
+assertion='Uploads file with semicolon and comma in filename'
+filename='/tmp/,dont;name,your;files,like;this,$filename'
+echo 'Bad file name' > "$filename"
+command="$PATH0X0 file $filename"
+expected_output_pattern='https://0x0.st/*'
+expected_exit_code=0
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
