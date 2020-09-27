@@ -68,8 +68,24 @@ get_full_status_code() {
 	esac
 }
 
+form_string() {
+	# Returns properly escaped form string. See curl(1)
+
+	type="$1" # file/url/shorten
+	file_or_url="$2"
+
+	if [ "$type" = file ]; then
+		printf '-Ffile=@"%s"' "$file_or_url"
+	else
+		printf '-F%s="%s"' "$type" "$file_or_url"
+	fi
+}
+
 request() {
-	form_string="$1" # -Fkey=[@]value
+	type="$1"
+	file_or_url="$2"
+
+	form_string="$(form_string "$type" "$file_or_url")"
 
 	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
 	code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
@@ -91,12 +107,12 @@ dispatch_file() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 
 	if [ "$file" = "-" ]; then
-		request "-Ffile=@-" # Read file from stdin
+		request file '-' # Read file from stdin
 	else
 		[ ! -e "$file" ] && exit_with_error "error: $file does not exist"
 		[ -d "$file" ] && exit_with_error "error: $file is a directory"
 
-		request "-Ffile=@$file"
+		request file "$file"
 	fi
 }
 
@@ -106,7 +122,7 @@ dispatch_url() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request "-Furl=$url"
+	request url "$url"
 }
 
 dispatch_shorten() {
@@ -115,7 +131,7 @@ dispatch_shorten() {
 	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request "-Fshorten=$url"
+	request shorten "$url"
 }
 
 # ---Dispatcher---
