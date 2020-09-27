@@ -15,4 +15,4 @@
 # PERFORMANCE OF THIS SOFTWARE.
 #
 
-tar vzcf "release/0x0-$1.tar.gz" src/0x0 doc/0x0.1 bin/test.sh || exit 1
+tar vzcf "release/0x0-$1.tar.gz" src/0x0 doc/0x0.1 bin/test.sh Makefile || exit 1
