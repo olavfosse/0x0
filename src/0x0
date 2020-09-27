@@ -71,7 +71,7 @@ get_full_status_code() {
 request() {
 	form_string="$1" # -Fkey=[@]value
 
-	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")"
+	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
 	code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
 	response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
 
