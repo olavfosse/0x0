@@ -38,7 +38,10 @@ Upload the local file
 .Ar filename Ns \&.
 If
 .Ar filename
-is -, input will be read from stdin.
+is a directory, a tarball of the directory is uploaded.
+If
+.Ar filename
+is -, stdin is uploaded.
 .It Cm url Ar URL
 Upload the remote file at
 .Ar URL .
