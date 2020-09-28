@@ -63,7 +63,6 @@ get_full_status_code() {
 
 form_string() {
 	# Returns properly escaped form string. See curl(1)
-
 	type="$1" # file/url/shorten
 	file_or_url="$2"
 
@@ -96,33 +95,36 @@ request() {
 
 # ---Dispatch handlers---
 dispatch_file() {
-	file="$2"
+	[ "$#" = 1 ] || exit_with_error "$USAGE"
 
-	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
+	file="$1"
 
-	if [ "$file" = "-" ]; then
-		request file '-' # Read file from stdin
-	else
-		[ ! -e "$file" ] && exit_with_error "error: $file does not exist"
-		[ -d "$file" ] && exit_with_error "error: $file is a directory"
-
+	if [ "$file" = - ]; then
+		request file -
+	elif [ -d "$file" ]; then
+		# stderr is redirected to /dev/null to prevent the following from being displayed
+		# tar: Removing leading / from absolute path names in the archive
+		tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
+	elif [ -e "$file" ]; then
 		request file "$file"
+	else
+		exit_with_error "error: $file does not exist"
 	fi
 }
 
 dispatch_url() {
-	url="$2"
+	url="$1"
 
-	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
+	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
 	request url "$url"
 }
 
 dispatch_shorten() {
-	url="$2"
+	url="$1"
 
-	[ ! "$#" = 2 ] && exit_with_error "$USAGE"
+	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
 	request shorten "$url"
@@ -130,7 +132,10 @@ dispatch_shorten() {
 
 # ---Dispatcher---
 dispatch() {
-	case "$1" in
+	command_modifier="$1"
+
+	shift
+	case "$command_modifier" in
 		file)
 			dispatch_file "$@"
 			;;
