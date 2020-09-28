@@ -68,9 +68,9 @@ form_string() {
 
 	# shellcheck disable=SC2039
 	if [ "$type" = file ]; then
-		printf '-Ffile=@"%s"' "$file_or_url"
+		printf -- '-Ffile=@"%s"' "$file_or_url"
 	else
-		printf '-F%s="%s"' "$type" "$file_or_url"
+		printf -- '-F%s="%s"' "$type" "$file_or_url"
 	fi
 }
 
