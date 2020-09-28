@@ -182,13 +182,16 @@ expected_exit_code=1
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 8
-assertion='Error when attempt to upload directory'
-directory="/tmp/"
+assertion='Directory is uploaded as a tarball'
+directory='/tmp/directory-to-tarball.temp'
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 command="$PATH0X0 file $directory"
-expected_output="error: $directory is a directory"
-expected_exit_code=1
+expected_output_pattern='https://0x0.st/*.tar'
+expected_exit_code=0
 
-test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 # Test 9
 assertion='Error when attempt to upload url with no protocol'
