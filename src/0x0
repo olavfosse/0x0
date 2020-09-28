@@ -24,13 +24,6 @@ EOF
 )"
 
 # ---Helpers---
-is_in_path() {
-	file="$1"
-
-	which "$file" > /dev/null 2> /dev/null
-	return "$?"
-}
-
 is_valid_url() {
 	url="$1"
 
@@ -153,8 +146,4 @@ dispatch() {
 }
 
 # ---Entry point---
-if ! is_in_path curl || [ "$SIMULATE_CURL_NOT_IN_PATH" = true ]; then
-	exit_with_error 'error: curl: not found'
-fi
-
 dispatch "$@"

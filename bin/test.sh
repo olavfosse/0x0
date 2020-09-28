@@ -191,31 +191,6 @@ expected_exit_code=1
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 9
-# HACK I was not able to escape the command properly, so the test helpers cannot be used
-assertion='Error when curl not in PATH'
-expected_output='error: curl: not found'
-expected_exit_code=1
-actual_output="$(SIMULATE_CURL_NOT_IN_PATH=true $PATH0X0 2>&1)"
-actual_exit_code="$?"
-
-if [ ! "$actual_output" = "$expected_output" ] || [ ! "$actual_exit_code" = "$expected_exit_code" ]; then
-		echo '---ASSERTION---'
-		printf '"%s"\n' "$assertion"
-		echo '---COMMAND---'
-		# shellcheck disable=SC2016
-		printf '"%s"\n' "SIMULATE_CURL_NOT_IN_PATH=true $PATH0X0"
-		echo '---EXPECTED OUTPUT---'
-		printf '"%s"\n' "$expected_output"
-		echo '---ACTUAL OUTPUT---'
-		printf '"%s"\n' "$actual_output"
-		echo '---EXPECTED EXIT CODE---'
-		printf '"%s"\n' "$expected_exit_code"
-		echo '---ACTUAL EXIT CODE---'
-		printf '"%s"\n' "$actual_exit_code"
-		fail
-fi
-
-# Test 10
 assertion='Error when attempt to upload url with no protocol'
 command="$PATH0X0 url fossegr.im"
 expected_output="error: invalid url"
@@ -223,7 +198,7 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
-# Test 11
+# Test 10
 assertion='Error when attempt to upload url without domain extension'
 command="$PATH0X0 url https://fossegr"
 expected_output="error: invalid url"
@@ -231,7 +206,7 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
-# Test 12
+# Test 11
 assertion='500 Internal Server Error when non existant, but valid url is uploaded'
 command="$PATH0X0 url https://non.existant.website"
 expected_output='error: 500 Internal Server Error'
@@ -239,7 +214,7 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
-# Test 13
+# Test 12
 # curl -F treats commas and semicolons differently
 # this makes sure it is escaped properly
 assertion='Uploads file with semicolon and comma in filename'
