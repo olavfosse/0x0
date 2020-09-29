@@ -6,3 +6,7 @@ install:
 
 	mkdir -p $(PREFIX)/man/man1
 	cp doc/0x0.1 $(PREFIX)/man/man1
+
+.PHONY: test
+test:
+	bin/test.sh
