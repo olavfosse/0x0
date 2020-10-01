@@ -229,6 +229,14 @@ expected_exit_code=0
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
+# Test 13
+assertion='Usage is printed when invoked with no arguments'
+command="$PATH0X0"
+expected_output="$USAGE"
+expected_exit_code=1
+
+test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
