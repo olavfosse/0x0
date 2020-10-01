@@ -134,7 +134,11 @@ dispatch_shorten() {
 dispatch() {
 	command_modifier="$1"
 
+	# shift fails if there are no arguments to shift.
+	[ "$#" = 0 ] && exit_with_error "$USAGE"
+
 	shift
+
 	case "$command_modifier" in
 		file)
 			dispatch_file "$@"
