@@ -23,6 +23,9 @@ usage:	0x0 file filename
 EOF
 )"
 
+verbose=false
+no_execute=false
+
 # ---Helpers---
 is_valid_url() {
 	url="$1"
@@ -80,17 +83,22 @@ request() {
 
 	form_string="$(form_string "$type" "$file_or_url")"
 
-	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
-	code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
-	response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
+	if $verbose ; then
+		echo "\$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")"
+	fi
+	if ! $no_execute ; then
+		output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
+		code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
+		response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
 
-	case "$code" in
-		4** | 5**)
-			exit_with_error "error: $(get_full_status_code "$code")"
-			;;
-		*)
-			echo "$response"
-	esac
+		case "$code" in
+			4** | 5**)
+				exit_with_error "error: $(get_full_status_code "$code")"
+				;;
+			*)
+				echo "$response"
+		esac
+	fi
 }
 
 # ---Dispatch handlers---
@@ -104,7 +112,14 @@ dispatch_file() {
 	elif [ -d "$file" ]; then
 		# stderr is redirected to /dev/null to prevent the following from being displayed
 		# tar: Removing leading / from absolute path names in the archive
-		tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
+		if $verbose ; then
+			echo "\$ tar cf - "$file" 2> /dev/null"
+		fi
+		if ! $no_execute ; then
+			tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
+		else
+			request file -
+		fi
 	elif [ -e "$file" ]; then
 		request file "$file"
 	else
@@ -133,21 +148,35 @@ dispatch_shorten() {
 # ---Dispatcher---
 dispatch() {
 	command_modifier="$1"
+	target="$2"
 
 	# shift fails if there are no arguments to shift.
-	[ "$#" = 0 ] && exit_with_error "$USAGE"
+	[ "$#" -lt 2 ] && exit_with_error "$USAGE"
 
 	shift
+	shift
+
+	while [ $# -gt 0 ]; do
+		case $1 in
+			-v) verbose=true
+			;;
+			-n) no_execute=true
+			;;
+			*) exit_with_error "$USAGE"
+			;;
+		esac
+		shift
+	done
 
 	case "$command_modifier" in
 		file)
-			dispatch_file "$@"
+			dispatch_file "$target"
 			;;
 		url)
-			dispatch_url "$@"
+			dispatch_url "$target"
 			;;
 		shorten)
-			dispatch_shorten "$@"
+			dispatch_shorten "$target"
 			;;
 		*)
 			exit_with_error "$USAGE"
