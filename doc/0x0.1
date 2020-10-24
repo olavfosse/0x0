@@ -31,7 +31,7 @@ utility is an interface to the
 .Lk https://0x0.st
 file hosting and URL shortening service.
 .Pp
-The following commands are available.
+The command modifiers are as follows.
 .Bl -tag -width Ds
 .It Cm file Ar filename
 Upload the local file
@@ -53,6 +53,24 @@ i.e return a short URL that redirects to
 .Ar URL
 when opened.
 Supported protocols are http and https.
+.El
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl n
+Do not execute the
+.Xr curl 1
+or
+.Xr tar 1
+commands.
+.It Fl v
+Output the
+.Xr curl 1
+and
+.Xr tar 1
+commands that where executed, or would be if
+.Fl n
+was not passed.
 .El
 .Sh EXIT STATUS
 The 0x0 utility exits 0 on upload/shortening, and 1 if an error occurs.
