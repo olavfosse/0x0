@@ -237,6 +237,52 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+# Test 14
+assertion='Print curl commands when -v option is passed'
+file_name='/tmp/0x0.temp'
+command="$PATH0X0 file $file_name -v"
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$file_name\")
+https://0x0.st/*.temp"
+expected_exit_code=0
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+# Test 15
+assertion='Print tar and curl commands when -v option is passed'
+directory='/tmp/directory-to-tarball.temp'
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+command="$PATH0X0 file $directory -v"
+expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
+$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")
+https://0x0.st/*.tar"
+expected_exit_code=0
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+# Test 16
+assertion='Print curl commands when -v option is passed but should not execute curl commands when -n is passed'
+file_name='/tmp/0x0.temp'
+command="$PATH0X0 file $file_name -v -n"
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$file_name\")"
+expected_exit_code=0
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+# Test 17
+assertion='Print tar and curl commands when -v option is passed but should not execute tar or curl commands when -n is passed'
+directory='/tmp/directory-to-tarball.temp'
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+command="$PATH0X0 file $directory -v -n"
+expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
+$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")"
+expected_exit_code=0
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
