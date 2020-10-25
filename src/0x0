@@ -155,11 +155,11 @@ dispatch() {
 	shift
 
 	while getopts "vn" flag; do
-	case "$flag" in
-		v) verbose=true;;
-		n) no_execute=true;;
-		*) exit_with_error "$USAGE"
-	esac
+		case "$flag" in
+			v) verbose=true;;
+			n) no_execute=true;;
+			*) exit_with_error "$USAGE"
+		esac
 	done
 
 	shift $((OPTIND-1))
