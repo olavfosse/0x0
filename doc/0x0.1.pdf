@@ -921,17 +921,69 @@ ET
 BT
 /F0 11 Tf
 81.774 102.817 Td
-(Upload) Tj
+(Output) Tj
 ET
 BT
 /F0 11 Tf
-116.908 102.817 Td
-(a) Tj
+115.082 102.817 Td
+(the) Tj
 ET
 BT
 /F0 11 Tf
-124.542 102.817 Td
-(diff:) Tj
+131.274 102.817 Td
+(curl\(1\)) Tj
+ET
+BT
+/F0 11 Tf
+163.955 102.817 Td
+(command) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+210.089 102.817 Td
+(0x0) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+229.339 102.817 Td
+(uses) Tj
+ET
+BT
+/F0 11 Tf
+251.031 102.817 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+262.339 102.817 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+278.531 102.817 Td
+(previous) Tj
+ET
+BT
+/F0 11 Tf
+319.165 102.817 Td
+(example) Tj
+ET
+BT
+/F0 11 Tf
+359.183 102.817 Td
+(without) Tj
+ET
+BT
+/F0 11 Tf
+395.549 102.817 Td
+(executing) Tj
+ET
+BT
+/F0 11 Tf
+441.067 102.817 Td
+(it:) Tj
 ET
 /F0 11 Tf
 BT
@@ -997,7 +1049,7 @@ ET
 endstream
 endobj
 8 0 obj
-8769
+9258
 endobj
 9 0 obj
 <<
@@ -1031,59 +1083,72 @@ ET
 BT
 /F0 11 Tf
 106.524 702.988 Td
-(diff) Tj
-ET
-BT
-/F0 11 Tf
-125.158 702.988 Td
-(old) Tj
-ET
-BT
-/F0 11 Tf
-141.966 702.988 Td
-(new) Tj
-ET
-BT
-/F0 11 Tf
-163.042 702.988 Td
-(|) Tj
-ET
-BT
-/F0 11 Tf
-167.992 702.988 Td
 (0x0) Tj
 ET
 BT
 /F0 11 Tf
-187.242 702.988 Td
+125.774 702.988 Td
 (file) Tj
 ET
 BT
 /F0 11 Tf
-204.655 702.988 Td
-(-) Tj
+143.187 702.988 Td
+(-nv) Tj
 ET
-/F1 11 Tf
 BT
-/F1 11 Tf
-98.274 687.599 Td
-(https://0x0.st/iU8L.txt) Tj
-ET
 /F0 11 Tf
+160.600 702.988 Td
+("$\(which) Tj
+ET
+BT
+/F0 11 Tf
+203.885 702.988 Td
+(0x0\)") Tj
+ET
+BT
+/F0 11 Tf
+98.274 687.599 Td
+(curl) Tj
+ET
+BT
+/F0 11 Tf
+118.129 687.599 Td
+(-Ss) Tj
+ET
+BT
+/F0 11 Tf
+134.937 687.599 Td
+(-w) Tj
+ET
+BT
+/F0 11 Tf
+149.292 687.599 Td
+(status_code=%{http_code}) Tj
+ET
+BT
+/F0 11 Tf
+272.679 687.599 Td
+(https://0x0.st) Tj
+ET
+BT
+/F0 11 Tf
+332.585 687.599 Td
+("-Ffile=@"/usr/local/bin/0x0"") Tj
+ET
 BT
 /F0 11 Tf
 81.774 656.821 Td
-(Shorten) Tj
+(Upload) Tj
 ET
 BT
 /F0 11 Tf
-118.745 656.821 Td
+116.908 656.821 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-126.379 656.821 Td
-(URL:) Tj
+124.542 656.821 Td
+(diff:) Tj
 ET
 BT
 /F0 11 Tf
@@ -1093,44 +1158,59 @@ ET
 BT
 /F0 11 Tf
 106.524 626.043 Td
+(diff) Tj
+ET
+BT
+/F0 11 Tf
+125.158 626.043 Td
+(old) Tj
+ET
+BT
+/F0 11 Tf
+141.966 626.043 Td
+(new) Tj
+ET
+BT
+/F0 11 Tf
+163.042 626.043 Td
+(|) Tj
+ET
+BT
+/F0 11 Tf
+167.992 626.043 Td
 (0x0) Tj
 ET
 BT
 /F0 11 Tf
-125.774 626.043 Td
-(shorten) Tj
+187.242 626.043 Td
+(file) Tj
 ET
 BT
 /F0 11 Tf
-160.908 626.043 Td
-(https://why-openbsd.rocks) Tj
+204.655 626.043 Td
+(-) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
 98.274 610.654 Td
-(https://0x0.st/PmsW) Tj
+(https://0x0.st/iU8L.txt) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
 81.774 579.876 Td
-(Upload) Tj
+(Shorten) Tj
 ET
 BT
 /F0 11 Tf
-116.908 579.876 Td
+118.745 579.876 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-124.542 579.876 Td
-(remote) Tj
-ET
-BT
-/F0 11 Tf
-157.839 579.876 Td
-(file:) Tj
+126.379 579.876 Td
+(URL:) Tj
 ET
 BT
 /F0 11 Tf
@@ -1145,89 +1225,136 @@ ET
 BT
 /F0 11 Tf
 125.774 549.098 Td
-(url) Tj
+(shorten) Tj
 ET
 BT
 /F0 11 Tf
-140.745 549.098 Td
-(http://www.openbsd.org/art/puffy/ppuf800X725.gif) Tj
+160.908 549.098 Td
+(https://why-openbsd.rocks) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
 98.274 533.709 Td
+(https://0x0.st/PmsW) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 502.931 Td
+(Upload) Tj
+ET
+BT
+/F0 11 Tf
+116.908 502.931 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+124.542 502.931 Td
+(remote) Tj
+ET
+BT
+/F0 11 Tf
+157.839 502.931 Td
+(file:) Tj
+ET
+BT
+/F0 11 Tf
+98.274 472.153 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+106.524 472.153 Td
+(0x0) Tj
+ET
+BT
+/F0 11 Tf
+125.774 472.153 Td
+(url) Tj
+ET
+BT
+/F0 11 Tf
+140.745 472.153 Td
+(http://www.openbsd.org/art/puffy/ppuf800X725.gif) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+98.274 456.764 Td
 (https://0x0.st/iU8n.gif) Tj
 ET
 BT
 /F1 11 Tf
-68.024 502.931 Td
+68.024 425.986 Td
 (SEE) Tj
 ET
 BT
 /F1 11 Tf
-91.564 502.931 Td
+91.564 425.986 Td
 (ALSO) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 487.542 Td
+81.774 410.597 Td
 (curl\(1\),) Tj
 ET
 BT
 /F0 11 Tf
-117.205 487.542 Td
+117.205 410.597 Td
 (tar\(1\)) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 456.764 Td
+81.774 379.819 Td
 (https://0x0.st) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-142.582 456.764 Td
+142.582 379.819 Td
 (,) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-148.082 456.764 Td
+148.082 379.819 Td
 (https://github.com/olav35/0x0) Tj
 ET
 BT
 /F1 11 Tf
-68.024 425.986 Td
+68.024 349.041 Td
 (AUTHORS) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 410.597 Td
+81.774 333.652 Td
 (Olav) Tj
 ET
 BT
 /F0 11 Tf
-105.908 410.597 Td
+105.908 333.652 Td
 (Fosse) Tj
 ET
 BT
 /F0 11 Tf
-133.716 410.597 Td
+133.716 333.652 Td
 (<) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-139.920 410.597 Td
+139.920 333.652 Td
 (fosseolav@gmail.com) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-237.116 410.597 Td
+237.116 333.652 Td
 (>) Tj
 ET
 /F0 11 Tf
@@ -1294,7 +1421,7 @@ ET
 endstream
 endobj
 12 0 obj
-2583
+3310
 endobj
 13 0 obj
 <<
@@ -1333,20 +1460,20 @@ xref
 0 16
 0000000000 65535 f 
 0000000009 00000 n 
-0000012217 00000 n 
+0000013433 00000 n 
 0000000030 00000 n 
 0000000112 00000 n 
 0000000193 00000 n 
 0000000276 00000 n 
 0000000363 00000 n 
-0000009184 00000 n 
-0000009204 00000 n 
-0000009299 00000 n 
-0000009380 00000 n 
-0000012017 00000 n 
-0000012038 00000 n 
-0000012134 00000 n 
-0000012307 00000 n 
+0000009673 00000 n 
+0000009693 00000 n 
+0000009788 00000 n 
+0000009869 00000 n 
+0000013233 00000 n 
+0000013254 00000 n 
+0000013350 00000 n 
+0000013523 00000 n 
 trailer
 <<
 /Size 16
@@ -1354,5 +1481,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-12357
+13573
 %%EOF

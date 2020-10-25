@@ -82,6 +82,16 @@ $ 0x0 file "$(which 0x0)"
 .Lk https://0x0.st/iU8B.bin
 .Ed
 .Pp
+Output the
+.Xr curl 1
+command
+.Nm
+uses in the previous example without executing it:
+.Bd -literal -offset indent
+$ 0x0 file -nv "$(which 0x0)"
+curl -Ss -w status_code=%{http_code} https://0x0.st "-Ffile=@"/usr/local/bin/0x0""
+.Ed
+.Pp
 Upload a diff:
 .Bd -literal -offset indent
 $ diff old new | 0x0 file -
