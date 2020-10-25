@@ -22,8 +22,8 @@
 .Lk https://0x0.st
 .Sh SYNOPSIS
 .Nm 0x0 Cm file Oo Fl nv Oc Ar filename
-.Nm 0x0 Cm url Oo Fl nv Oc Ar URL
 .Nm 0x0 Cm shorten Oo Fl nv Oc Ar URL
+.Nm 0x0 Cm url Oo Fl nv Oc Ar URL
 .Sh DESCRIPTION
 The
 .Nm
@@ -42,16 +42,16 @@ is a directory, a tarball of the directory is uploaded.
 If
 .Ar filename
 is -, stdin is uploaded.
-.It Cm url Ar URL
-Upload the remote file at
-.Ar URL .
-Supported protocols are http and https.
 .It Cm shorten Ar URL
 Shorten
 .Ar URL ,
 i.e return a short URL that redirects to
 .Ar URL
 when opened.
+Supported protocols are http and https.
+.It Cm url Ar URL
+Upload the remote file at
+.Ar URL .
 Supported protocols are http and https.
 .El
 .Pp
@@ -68,7 +68,7 @@ Output the
 .Xr curl 1
 and
 .Xr tar 1
-commands that where executed, or would be if
+commands that are executed, or would be if
 .Fl n
 was not passed.
 .El
@@ -88,16 +88,16 @@ $ diff old new | 0x0 file -
 .Lk https://0x0.st/iU8L.txt
 .Ed
 .Pp
-Upload a remote file:
-.Bd -literal -offset indent
-$ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
-.Lk https://0x0.st/iU8n.gif
-.Ed
-.Pp
 Shorten a URL:
 .Bd -literal -offset indent
 $ 0x0 shorten https://why-openbsd.rocks
 .Lk https://0x0.st/PmsW
+.Ed
+.Pp
+Upload a remote file:
+.Bd -literal -offset indent
+$ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
+.Lk https://0x0.st/iU8n.gif
 .Ed
 .Sh SEE ALSO
 .Xr curl 1 ,
