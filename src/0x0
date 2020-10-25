@@ -84,7 +84,7 @@ request() {
 	form_string="$(form_string "$type" "$file_or_url")"
 
 	if $verbose ; then
-		echo "\$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")"
+		echo "\$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string""
 	fi
 	if ! $no_execute ; then
 		output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1

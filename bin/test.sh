@@ -319,7 +319,7 @@ unset expected_exit_code
 assertion='Print curl commands when -v option is passed'
 filename='/tmp/0x0.temp'
 command="$PATH0X0 file -v $filename"
-expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\")
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\"
 https://0x0.st/*.temp"
 expected_exit_code=0
 
@@ -340,7 +340,7 @@ assertion='Print tar and curl commands when -v option is passed'
 directory='/tmp/directory-to-tarball.temp'
 command="$PATH0X0 file -v $directory"
 expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
-$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")
+$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\"
 https://0x0.st/*.tar"
 expected_exit_code=0
 
@@ -362,7 +362,7 @@ unset expected_exit_code
 assertion='Print curl commands when -v option is passed but should not execute curl commands when -n is passed'
 filename='/tmp/0x0.temp'
 command="$PATH0X0 file -v -n $filename"
-expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\")"
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\""
 expected_exit_code=0
 
 echo "garbage content" >> "$filename"
@@ -380,7 +380,7 @@ assertion='Print tar and curl commands when -v option is passed but should not e
 directory='/tmp/directory-to-tarball.temp'
 command="$PATH0X0 file  -v -n $directory"
 expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
-$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")"
+$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\""
 expected_exit_code=0
 
 mkdir -p "$directory"
