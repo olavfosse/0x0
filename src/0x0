@@ -24,7 +24,7 @@ EOF
 )"
 
 verbose=false
-no_execute=false
+execute=true
 
 # ---Helpers---
 is_valid_url() {
@@ -83,10 +83,10 @@ request() {
 
 	form_string="$(form_string "$type" "$file_or_url")"
 
-	if $verbose ; then
+	if "$verbose"; then
 		echo "\$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string""
 	fi
-	if ! $no_execute ; then
+	if "$execute"; then
 		output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
 		code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
 		response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
@@ -112,10 +112,10 @@ dispatch_file() {
 	elif [ -d "$file" ]; then
 		# stderr is redirected to /dev/null to prevent the following from being displayed
 		# tar: Removing leading / from absolute path names in the archive
-		if $verbose ; then
+		if "$verbose"; then
 			echo "\$ tar cf - "$file" 2> /dev/null"
 		fi
-		if ! $no_execute ; then
+		if "$execute"; then
 			tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
 		else
 			request file -
@@ -157,7 +157,7 @@ dispatch() {
 	while getopts "vn" flag; do
 		case "$flag" in
 			v) verbose=true;;
-			n) no_execute=true;;
+			n) execute=false;;
 			*) exit_with_error "$USAGE"
 		esac
 	done
