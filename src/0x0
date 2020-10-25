@@ -117,6 +117,8 @@ dispatch_file() {
 		if "$execute"; then
 			tar cf - "$file" 2> /dev/null | request file - "$execute" "$verbose" || exit_with_error 'error: tar archival failed'
 		else
+			# NB: This branch is not redundant.
+			# it is required because although we will not execute the command, we may still print it in case $verbose is true
 			request file - "$execute" "$verbose"
 		fi
 	elif [ -e "$file" ]; then
