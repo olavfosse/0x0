@@ -150,34 +150,33 @@ dispatch() {
 	command_modifier="$1"
 
 	# shift fails if there are no arguments to shift.
-	[ "$#" -lt 2 ] && exit_with_error "$USAGE"
-
+	[ "$#" = 0 ] && exit_with_error "$USAGE"
 	shift
 
-	while getopts "vn" flag; do
+	while getopts "nv" flag; do
 		case "$flag" in
 			v) verbose=true;;
 			n) execute=false;;
-			*) exit_with_error "$USAGE"
+			?) exit_with_error "$USAGE"
 		esac
 	done
 
+	# Shift away the processed options
 	shift $((OPTIND-1))
 
-	# only continue if only one file name is provided
+	# Only continue if exactly one file or url is passed
 	[ "$#" -eq 1 ] || exit_with_error "$USAGE"
-
-	target="$1"
+	file_or_url="$1"
 
 	case "$command_modifier" in
 		file)
-			dispatch_file "$target"
+			dispatch_file "$file_or_url"
 			;;
 		url)
-			dispatch_url "$target"
+			dispatch_url "$file_or_url"
 			;;
 		shorten)
-			dispatch_shorten "$target"
+			dispatch_shorten "$file_or_url"
 			;;
 		*)
 			exit_with_error "$USAGE"
