@@ -23,7 +23,7 @@ usage:	0x0 file [-nv] filename
 EOF
 )"
  
-PATH0X0="./src/0x0"
+PATH0X0="$PWD/src/0x0"
 
 # ---Globals---
 ALL_GREEN=true
@@ -393,6 +393,24 @@ rm -rf "$directory"
 
 unset assertion
 unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 18
+assertion="Uploads file with flag-like filename provided it is preceded by --"
+command="$PATH0X0 file -- -a"
+expected_output_pattern='https://0x0.st/*.txt'
+expected_exit_code=0
+
+echo 'testy test' > /tmp/-a
+cd /tmp
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm /tmp/-a
+
+unset assertion
 unset command
 unset expected_output_pattern
 unset expected_exit_code
