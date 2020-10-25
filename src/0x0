@@ -153,7 +153,7 @@ dispatch() {
 	[ "$#" = 0 ] && exit_with_error "$USAGE"
 	shift
 
-	while getopts "nv" flag; do
+	while getopts ":nv" flag; do
 		case "$flag" in
 			v) verbose=true;;
 			n) execute=false;;
