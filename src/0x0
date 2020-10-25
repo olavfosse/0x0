@@ -17,9 +17,9 @@
 
 # ---Constants---
 USAGE="$(cat << EOF
-usage:	0x0 file filename
-	0x0 url URL
-	0x0 shorten URL
+usage:	0x0 file [-nv] filename
+	0x0 shorten [-nv] URL
+	0x0 url [-nv] URL
 EOF
 )"
 
@@ -77,36 +77,56 @@ form_string() {
 request() {
 	type="$1"
 	file_or_url="$2"
+	execute="$3"
+	verbose="$4"
 
 	form_string="$(form_string "$type" "$file_or_url")"
 
-	output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
-	code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
-	response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
+	# NB: The command is repeated two places.
+	# This is bad, but I couldn't get it to print and run correctly at the same time when putting it in a variable.
+	if "$verbose"; then
+		echo curl -Ss -w status_code=%{http_code} https://0x0.st \"$form_string\"
+	fi
+	if "$execute"; then
+		output="$(curl -Ss -w status_code=%{http_code} https://0x0.st "$form_string")" || exit 1
+		code="$(echo "$output" | tail -n 1 |  sed s/status_code=//g)"
+		response="$(echo "$output" | grep -vE 'status_code=.*')" # Remove status_code line
 
-	case "$code" in
-		4** | 5**)
-			exit_with_error "error: $(get_full_status_code "$code")"
-			;;
-		*)
-			echo "$response"
-	esac
+		case "$code" in
+			4** | 5**)
+				exit_with_error "error: $(get_full_status_code "$code")"
+				;;
+			*)
+				echo "$response"
+		esac
+	fi
 }
 
 # ---Dispatch handlers---
 dispatch_file() {
-	[ "$#" = 1 ] || exit_with_error "$USAGE"
-
 	file="$1"
+	execute="$2"
+	verbose="$3"
 
 	if [ "$file" = - ]; then
-		request file -
+		request file - "$execute" "$verbose"
 	elif [ -d "$file" ]; then
-		# stderr is redirected to /dev/null to prevent the following from being displayed
-		# tar: Removing leading / from absolute path names in the archive
-		tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
+		# NB: The command is repeated two places.
+		# This is bad, but I couldn't get it to print and run correctly at the same time when putting it in a variable.
+		if "$verbose"; then
+			echo tar cf - \"$file\"
+		fi
+		if "$execute"; then
+			# stderr is redirected to /dev/null to prevent the following from being displayed
+			# tar: Removing leading / from absolute path names in the archive
+			tar cf - "$file" 2> /dev/null | request file - "$execute" "$verbose" || exit_with_error 'error: tar archival failed'
+		else
+			# NB: This branch is not redundant.
+			# it is required because although we will not execute the command, we may still print it in case $verbose is true
+			request file - "$execute" "$verbose"
+		fi
 	elif [ -e "$file" ]; then
-		request file "$file"
+		request file "$file" "$execute" "$verbose"
 	else
 		exit_with_error "error: $file does not exist"
 	fi
@@ -114,20 +134,22 @@ dispatch_file() {
 
 dispatch_url() {
 	url="$1"
+	execute="$2"
+	verbose="$3"
 
-	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request url "$url"
+	request url "$url" "$execute" "$verbose"
 }
 
 dispatch_shorten() {
 	url="$1"
+	execute="$2"
+	verbose="$3"
 
-	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request shorten "$url"
+	request shorten "$url" "$execute" "$verbose"
 }
 
 # ---Dispatcher---
@@ -136,18 +158,34 @@ dispatch() {
 
 	# shift fails if there are no arguments to shift.
 	[ "$#" = 0 ] && exit_with_error "$USAGE"
-
 	shift
+
+	execute=true
+	verbose=false
+	while getopts ":nv" flag; do
+		case "$flag" in
+			n) execute=false;;
+			v) verbose=true;;
+			?) exit_with_error "$USAGE"
+		esac
+	done
+
+	# Shift away the processed options
+	shift $((OPTIND-1))
+
+	# Only continue if exactly one file or url is passed
+	[ "$#" -eq 1 ] || exit_with_error "$USAGE"
+	file_or_url="$1"
 
 	case "$command_modifier" in
 		file)
-			dispatch_file "$@"
+			dispatch_file "$file_or_url" "$execute" "$verbose"
 			;;
 		url)
-			dispatch_url "$@"
+			dispatch_url "$file_or_url" "$execute" "$verbose"
 			;;
 		shorten)
-			dispatch_shorten "$@"
+			dispatch_shorten "$file_or_url" "$execute" "$verbose"
 			;;
 		*)
 			exit_with_error "$USAGE"

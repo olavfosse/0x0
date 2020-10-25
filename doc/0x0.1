@@ -21,9 +21,9 @@
 .Nd interface with
 .Lk https://0x0.st
 .Sh SYNOPSIS
-.Nm 0x0 Cm file Ar filename
-.Nm 0x0 Cm url Ar URL
-.Nm 0x0 Cm shorten Ar URL
+.Nm 0x0 Cm file Oo Fl nv Oc Ar filename
+.Nm 0x0 Cm shorten Oo Fl nv Oc Ar URL
+.Nm 0x0 Cm url Oo Fl nv Oc Ar URL
 .Sh DESCRIPTION
 The
 .Nm
@@ -31,7 +31,7 @@ utility is an interface to the
 .Lk https://0x0.st
 file hosting and URL shortening service.
 .Pp
-The following commands are available.
+The command modifiers are as follows.
 .Bl -tag -width Ds
 .It Cm file Ar filename
 Upload the local file
@@ -42,10 +42,6 @@ is a directory, a tarball of the directory is uploaded.
 If
 .Ar filename
 is -, stdin is uploaded.
-.It Cm url Ar URL
-Upload the remote file at
-.Ar URL .
-Supported protocols are http and https.
 .It Cm shorten Ar URL
 Shorten
 .Ar URL ,
@@ -53,6 +49,28 @@ i.e return a short URL that redirects to
 .Ar URL
 when opened.
 Supported protocols are http and https.
+.It Cm url Ar URL
+Upload the remote file at
+.Ar URL .
+Supported protocols are http and https.
+.El
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl n
+Do not execute the
+.Xr curl 1
+or
+.Xr tar 1
+commands.
+.It Fl v
+Output the
+.Xr curl 1
+and
+.Xr tar 1
+commands that are executed, or would be if
+.Fl n
+was not passed.
 .El
 .Sh EXIT STATUS
 The 0x0 utility exits 0 on upload/shortening, and 1 if an error occurs.
@@ -64,22 +82,32 @@ $ 0x0 file "$(which 0x0)"
 .Lk https://0x0.st/iU8B.bin
 .Ed
 .Pp
+Output the
+.Xr curl 1
+command
+.Nm
+uses in the previous example without executing it:
+.Bd -literal -offset indent
+$ 0x0 file -nv "$(which 0x0)"
+curl -Ss -w status_code=%{http_code} https://0x0.st "-Ffile=@"/usr/local/bin/0x0""
+.Ed
+.Pp
 Upload a diff:
 .Bd -literal -offset indent
 $ diff old new | 0x0 file -
 .Lk https://0x0.st/iU8L.txt
 .Ed
 .Pp
-Upload a remote file:
-.Bd -literal -offset indent
-$ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
-.Lk https://0x0.st/iU8n.gif
-.Ed
-.Pp
 Shorten a URL:
 .Bd -literal -offset indent
 $ 0x0 shorten https://why-openbsd.rocks
 .Lk https://0x0.st/PmsW
+.Ed
+.Pp
+Upload a remote file:
+.Bd -literal -offset indent
+$ 0x0 url http://www.openbsd.org/art/puffy/ppuf800X725.gif
+.Lk https://0x0.st/iU8n.gif
 .Ed
 .Sh SEE ALSO
 .Xr curl 1 ,

@@ -17,13 +17,13 @@
 
 # ---Constants---
 USAGE="$(cat << EOF
-usage:	0x0 file filename
-	0x0 url URL
-	0x0 shorten URL
+usage:	0x0 file [-nv] filename
+	0x0 shorten [-nv] URL
+	0x0 url [-nv] URL
 EOF
 )"
  
-PATH0X0="./src/0x0"
+PATH0X0="$PWD/src/0x0"
 
 # ---Globals---
 ALL_GREEN=true
@@ -103,6 +103,11 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 2
 assertion='Error when too many arguments are passed'
 command="$PATH0X0 file file1 file2"
@@ -110,6 +115,11 @@ expected_output="$USAGE"
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
 
 # Test 3
 # HACK I was not able to escape the command properly, so the test helpers cannot be used
@@ -144,6 +154,12 @@ case "$actual_output" in
 		local_fail
 esac
 
+unset assertion
+unset expected_output_pattern
+unset expected_exit_code
+unset actual_output
+unset actual_exit_code
+
 # Test 4
 assertion='File is uploaded from disk'
 file_name='/tmp/0x0.temp'
@@ -156,6 +172,14 @@ echo 'echo hello, world' >> "$file_name"
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
+rm "$file_name"
+
+unset assertion
+unset file_name
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 5
 assertion='File is uploaded from URL'
 command="$PATH0X0 url https://fossegr.im"
@@ -164,6 +188,11 @@ expected_exit_code=0
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 6
 assertion='URL is shortened'
 command="$PATH0X0 shorten https://fossegr.im/"
@@ -171,6 +200,11 @@ expected_output_pattern='https://0x0.st/*'
 expected_exit_code=0
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 7
 assertion='Error when attempt to upload non-existant file'
@@ -181,17 +215,32 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset file
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 8
 assertion='Directory is uploaded as a tarball'
 directory='/tmp/directory-to-tarball.temp'
-mkdir -p "$directory"
-echo 'Welcome to my tarball' > "$directory/README"
-echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 command="$PATH0X0 file $directory"
 expected_output_pattern='https://0x0.st/*.tar'
 expected_exit_code=0
 
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
+
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 9
 assertion='Error when attempt to upload url with no protocol'
@@ -201,6 +250,11 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 10
 assertion='Error when attempt to upload url without domain extension'
 command="$PATH0X0 url https://fossegr"
@@ -208,6 +262,11 @@ expected_output="error: invalid url"
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
 
 # Test 11
 assertion='500 Internal Server Error when non existant, but valid url is uploaded'
@@ -217,17 +276,31 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 12
 # curl -F treats commas and semicolons differently
 # this makes sure it is escaped properly
 assertion='Uploads file with semicolon and comma in filename'
 filename='/tmp/,dont;name,your;files,like;this,'
-echo 'Bad file name' > "$filename"
 command="$PATH0X0 file $filename"
 expected_output_pattern='https://0x0.st/*'
 expected_exit_code=0
 
+echo 'Bad file name' > "$filename"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm "$filename"
+
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 13
 assertion='Usage is printed when invoked with no arguments'
@@ -236,6 +309,124 @@ expected_output="$USAGE"
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
+# Test 14
+assertion='Print curl commands when -v option is passed'
+filename='/tmp/0x0.temp'
+command="$PATH0X0 file -v $filename"
+expected_output_pattern="curl -Ss -w status_code=%{http_code} https://0x0.st \"-Ffile=@\"$filename\"\"
+https://0x0.st/*.temp"
+expected_exit_code=0
+
+echo "random file content" > "$filename"
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm "$filename"
+
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 15
+assertion='Print tar and curl commands when -v option is passed'
+directory='/tmp/directory-to-tarball.temp'
+command="$PATH0X0 file -v $directory"
+expected_output_pattern="tar cf - \"/tmp/directory-to-tarball.temp\"
+curl -Ss -w status_code=%{http_code} https://0x0.st \"-Ffile=@\"-\"\"
+https://0x0.st/*.tar"
+expected_exit_code=0
+
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
+
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 16
+assertion='Print curl commands when -v option is passed but should not execute curl commands when -n is passed'
+filename='/tmp/0x0.temp'
+command="$PATH0X0 file -v -n $filename"
+expected_output_pattern="curl -Ss -w status_code=%{http_code} https://0x0.st \"-Ffile=@\"$filename\"\""
+expected_exit_code=0
+
+echo "garbage content" >> "$filename"
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 17
+assertion='Print tar and curl commands when -v option is passed but should not execute tar or curl commands when -n is passed'
+directory='/tmp/directory-to-tarball.temp'
+command="$PATH0X0 file  -v -n $directory"
+expected_output_pattern="tar cf - \"/tmp/directory-to-tarball.temp\"
+curl -Ss -w status_code=%{http_code} https://0x0.st \"-Ffile=@\"-\"\""
+expected_exit_code=0
+
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
+
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 18
+assertion="Uploads file with flag-like filename provided it is preceded by --"
+command="$PATH0X0 file -- -a"
+expected_output_pattern='https://0x0.st/*.txt'
+expected_exit_code=0
+
+echo 'testy test' > /tmp/-a
+cd /tmp
+
+test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm /tmp/-a
+
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
+# Test 19
+assertion="Fails on invalid flags"
+command="$PATH0X0 file -x file-that-im-too-lazy-to-create-it-should-not-matter-for-this-test-anyhow"
+expected_output="$USAGE"
+expected_exit_code=1
+
+test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
