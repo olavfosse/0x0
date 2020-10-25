@@ -148,25 +148,26 @@ dispatch_shorten() {
 # ---Dispatcher---
 dispatch() {
 	command_modifier="$1"
-	target="$2"
 
 	# shift fails if there are no arguments to shift.
 	[ "$#" -lt 2 ] && exit_with_error "$USAGE"
 
 	shift
-	shift
 
-	while [ $# -gt 0 ]; do
-		case $1 in
-			-v) verbose=true
-			;;
-			-n) no_execute=true
-			;;
-			*) exit_with_error "$USAGE"
-			;;
-		esac
-		shift
+	while getopts "vn" flag; do
+	case "$flag" in
+		v) verbose=true;;
+		n) no_execute=true;;
+		*) exit_with_error "$USAGE"
+	esac
 	done
+
+	shift $((OPTIND-1))
+
+	# only continue if only one file name is provided
+	[ "$#" -eq 1 ] || exit_with_error "$USAGE"
+
+	target="$1"
 
 	case "$command_modifier" in
 		file)
