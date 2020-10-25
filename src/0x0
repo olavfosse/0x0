@@ -82,8 +82,10 @@ request() {
 
 	form_string="$(form_string "$type" "$file_or_url")"
 
+	# NB: The command is repeated two places.
+	# This is bad, but I couldn't get it to print and run correctly at the same time when putting it in a variable.
 	if "$verbose"; then
-		echo "\$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string""
+		echo curl -Ss -w \'status_code=%{http_code}\' https://0x0.st \"$form_string\"
 	fi
 	if "$execute"; then
 		output="$(curl -Ss -w 'status_code=%{http_code}' https://0x0.st "$form_string")" || exit 1
@@ -109,12 +111,14 @@ dispatch_file() {
 	if [ "$file" = - ]; then
 		request file - "$execute" "$verbose"
 	elif [ -d "$file" ]; then
-		# stderr is redirected to /dev/null to prevent the following from being displayed
-		# tar: Removing leading / from absolute path names in the archive
+		# NB: The command is repeated two places.
+		# This is bad, but I couldn't get it to print and run correctly at the same time when putting it in a variable.
 		if "$verbose"; then
-			echo "\$ tar cf - "$file" 2> /dev/null"
+			echo tar cf - \"$file\" 2> /dev/null
 		fi
 		if "$execute"; then
+			# stderr is redirected to /dev/null to prevent the following from being displayed
+			# tar: Removing leading / from absolute path names in the archive
 			tar cf - "$file" 2> /dev/null | request file - "$execute" "$verbose" || exit_with_error 'error: tar archival failed'
 		else
 			# NB: This branch is not redundant.
