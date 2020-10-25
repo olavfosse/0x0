@@ -103,8 +103,6 @@ request() {
 
 # ---Dispatch handlers---
 dispatch_file() {
-	[ "$#" = 1 ] || exit_with_error "$USAGE"
-
 	file="$1"
 
 	if [ "$file" = - ]; then
@@ -130,7 +128,6 @@ dispatch_file() {
 dispatch_url() {
 	url="$1"
 
-	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
 	request url "$url"
@@ -139,7 +136,6 @@ dispatch_url() {
 dispatch_shorten() {
 	url="$1"
 
-	[ ! "$#" = 1 ] && exit_with_error "$USAGE"
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
 	request shorten "$url"
