@@ -103,6 +103,11 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 2
 assertion='Error when too many arguments are passed'
 command="$PATH0X0 file file1 file2"
@@ -110,6 +115,11 @@ expected_output="$USAGE"
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
 
 # Test 3
 # HACK I was not able to escape the command properly, so the test helpers cannot be used
@@ -144,6 +154,12 @@ case "$actual_output" in
 		local_fail
 esac
 
+unset assertion
+unset expected_output_pattern
+unset expected_exit_code
+unset actual_output
+unset actual_exit_code
+
 # Test 4
 assertion='File is uploaded from disk'
 file_name='/tmp/0x0.temp'
@@ -158,6 +174,12 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 
 rm "$file_name"
 
+unset assertion
+unset file_name
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 5
 assertion='File is uploaded from URL'
 command="$PATH0X0 url https://fossegr.im"
@@ -166,6 +188,11 @@ expected_exit_code=0
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 6
 assertion='URL is shortened'
 command="$PATH0X0 shorten https://fossegr.im/"
@@ -173,6 +200,11 @@ expected_output_pattern='https://0x0.st/*'
 expected_exit_code=0
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 7
 assertion='Error when attempt to upload non-existant file'
@@ -183,20 +215,32 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset file
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 8
 assertion='Directory is uploaded as a tarball'
 directory='/tmp/directory-to-tarball.temp'
-mkdir -p "$directory"
 command="$PATH0X0 file $directory"
 expected_output_pattern='https://0x0.st/*.tar'
 expected_exit_code=0
 
+mkdir -p "$directory"
 echo 'Welcome to my tarball' > "$directory/README"
 echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 rm -rf "$directory"
+
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 9
 assertion='Error when attempt to upload url with no protocol'
@@ -206,6 +250,11 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 10
 assertion='Error when attempt to upload url without domain extension'
 command="$PATH0X0 url https://fossegr"
@@ -214,6 +263,11 @@ expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
+
 # Test 11
 assertion='500 Internal Server Error when non existant, but valid url is uploaded'
 command="$PATH0X0 url https://non.existant.website"
@@ -221,6 +275,11 @@ expected_output='error: 500 Internal Server Error'
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
 
 # Test 12
 # curl -F treats commas and semicolons differently
@@ -237,6 +296,12 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 
 rm "$filename"
 
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 13
 assertion='Usage is printed when invoked with no arguments'
 command="$PATH0X0"
@@ -244,6 +309,11 @@ expected_output="$USAGE"
 expected_exit_code=1
 
 test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output
+unset expected_exit_code
 
 # Test 14
 assertion='Print curl commands when -v option is passed'
@@ -258,6 +328,12 @@ echo "random file content" > "$filename"
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 rm "$filename"
+
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 15
 assertion='Print tar and curl commands when -v option is passed'
@@ -276,6 +352,12 @@ test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_
 
 rm -rf "$directory"
 
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # Test 16
 assertion='Print curl commands when -v option is passed but should not execute curl commands when -n is passed'
 filename='/tmp/0x0.temp'
@@ -286,6 +368,12 @@ expected_exit_code=0
 echo "garbage content" >> "$filename"
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+unset assertion
+unset filename
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # Test 17
 assertion='Print tar and curl commands when -v option is passed but should not execute tar or curl commands when -n is passed'
@@ -302,6 +390,12 @@ echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 rm -rf "$directory"
+
+unset assertion
+unset directory
+unset command
+unset expected_output_pattern
+unset expected_exit_code
 
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
