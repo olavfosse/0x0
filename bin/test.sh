@@ -156,6 +156,8 @@ echo 'echo hello, world' >> "$file_name"
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
+rm "$file_name"
+
 # Test 5
 assertion='File is uploaded from URL'
 command="$PATH0X0 url https://fossegr.im"
@@ -185,13 +187,16 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 assertion='Directory is uploaded as a tarball'
 directory='/tmp/directory-to-tarball.temp'
 mkdir -p "$directory"
-echo 'Welcome to my tarball' > "$directory/README"
-echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 command="$PATH0X0 file $directory"
 expected_output_pattern='https://0x0.st/*.tar'
 expected_exit_code=0
 
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
 
 # Test 9
 assertion='Error when attempt to upload url with no protocol'
@@ -222,12 +227,15 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 # this makes sure it is escaped properly
 assertion='Uploads file with semicolon and comma in filename'
 filename='/tmp/,dont;name,your;files,like;this,'
-echo 'Bad file name' > "$filename"
 command="$PATH0X0 file $filename"
 expected_output_pattern='https://0x0.st/*'
 expected_exit_code=0
 
+echo 'Bad file name' > "$filename"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm "$filename"
 
 # Test 13
 assertion='Usage is printed when invoked with no arguments'
@@ -239,49 +247,61 @@ test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
 
 # Test 14
 assertion='Print curl commands when -v option is passed'
-file_name='/tmp/0x0.temp'
-command="$PATH0X0 file -v $file_name"
-expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$file_name\")
+filename='/tmp/0x0.temp'
+command="$PATH0X0 file -v $filename"
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\")
 https://0x0.st/*.temp"
 expected_exit_code=0
 
+echo "random file content" > "$filename"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm "$filename"
 
 # Test 15
 assertion='Print tar and curl commands when -v option is passed'
 directory='/tmp/directory-to-tarball.temp'
-mkdir -p "$directory"
-echo 'Welcome to my tarball' > "$directory/README"
-echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 command="$PATH0X0 file -v $directory"
 expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
 $ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")
 https://0x0.st/*.tar"
 expected_exit_code=0
 
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
 
 # Test 16
 assertion='Print curl commands when -v option is passed but should not execute curl commands when -n is passed'
-file_name='/tmp/0x0.temp'
-command="$PATH0X0 file -v -n $file_name"
-expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$file_name\")"
+filename='/tmp/0x0.temp'
+command="$PATH0X0 file -v -n $filename"
+expected_output_pattern="$ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"$filename\")"
 expected_exit_code=0
+
+echo "garbage content" >> "$filename"
 
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
 
 # Test 17
 assertion='Print tar and curl commands when -v option is passed but should not execute tar or curl commands when -n is passed'
 directory='/tmp/directory-to-tarball.temp'
-mkdir -p "$directory"
-echo 'Welcome to my tarball' > "$directory/README"
-echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
 command="$PATH0X0 file  -v -n $directory"
 expected_output_pattern="$ tar cf - /tmp/directory-to-tarball.temp 2> /dev/null
 $ curl -Ss -w 'status_code=%{http_code}' https://0x0.st -Ffile=@\"-\")"
 expected_exit_code=0
 
+mkdir -p "$directory"
+echo 'Welcome to my tarball' > "$directory/README"
+echo 'lorem ipsum dolor sit amet' > "$directory/lorem"
+
 test_pattern "$assertion" "$command" "$expected_output_pattern" "$expected_exit_code"
+
+rm -rf "$directory"
 
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
