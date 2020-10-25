@@ -415,6 +415,19 @@ unset command
 unset expected_output_pattern
 unset expected_exit_code
 
+# Test 19
+assertion="Fails on invalid flags"
+command="$PATH0X0 file -x file-that-im-too-lazy-to-create-it-should-not-matter-for-this-test-anyhow"
+expected_output="$USAGE"
+expected_exit_code=1
+
+test_exact "$assertion" "$command" "$expected_output" "$expected_exit_code"
+
+unset assertion
+unset command
+unset expected_output_pattern
+unset expected_exit_code
+
 # ---Report---
 if [ "$ALL_GREEN" = true ]; then
 	echo 'All tests passed'
