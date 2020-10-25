@@ -114,7 +114,7 @@ dispatch_file() {
 		# NB: The command is repeated two places.
 		# This is bad, but I couldn't get it to print and run correctly at the same time when putting it in a variable.
 		if "$verbose"; then
-			echo tar cf - \"$file\" 2> /dev/null
+			echo tar cf - \"$file\"
 		fi
 		if "$execute"; then
 			# stderr is redirected to /dev/null to prevent the following from being displayed
