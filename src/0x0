@@ -23,9 +23,6 @@ usage:	0x0 file [-nv] filename
 EOF
 )"
 
-verbose=false
-execute=true
-
 # ---Helpers---
 is_valid_url() {
 	url="$1"
@@ -80,6 +77,8 @@ form_string() {
 request() {
 	type="$1"
 	file_or_url="$2"
+	execute="$3"
+	verbose="$4"
 
 	form_string="$(form_string "$type" "$file_or_url")"
 
@@ -104,9 +103,11 @@ request() {
 # ---Dispatch handlers---
 dispatch_file() {
 	file="$1"
+	execute="$2"
+	verbose="$3"
 
 	if [ "$file" = - ]; then
-		request file -
+		request file - "$execute" "$verbose"
 	elif [ -d "$file" ]; then
 		# stderr is redirected to /dev/null to prevent the following from being displayed
 		# tar: Removing leading / from absolute path names in the archive
@@ -114,12 +115,12 @@ dispatch_file() {
 			echo "\$ tar cf - "$file" 2> /dev/null"
 		fi
 		if "$execute"; then
-			tar cf - "$file" 2> /dev/null | request file - || exit_with_error 'error: tar archival failed'
+			tar cf - "$file" 2> /dev/null | request file - "$execute" "$verbose" || exit_with_error 'error: tar archival failed'
 		else
-			request file -
+			request file - "$execute" "$verbose"
 		fi
 	elif [ -e "$file" ]; then
-		request file "$file"
+		request file "$file" "$execute" "$verbose"
 	else
 		exit_with_error "error: $file does not exist"
 	fi
@@ -127,18 +128,22 @@ dispatch_file() {
 
 dispatch_url() {
 	url="$1"
+	execute="$2"
+	verbose="$3"
 
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request url "$url"
+	request url "$url" "$execute" "$verbose"
 }
 
 dispatch_shorten() {
 	url="$1"
+	execute="$2"
+	verbose="$3"
 
 	is_valid_url "$url" || exit_with_error 'error: invalid url'
 
-	request shorten "$url"
+	request shorten "$url" "$execute" "$verbose"
 }
 
 # ---Dispatcher---
@@ -149,10 +154,12 @@ dispatch() {
 	[ "$#" = 0 ] && exit_with_error "$USAGE"
 	shift
 
+	execute=true
+	verbose=false
 	while getopts ":nv" flag; do
 		case "$flag" in
-			v) verbose=true;;
 			n) execute=false;;
+			v) verbose=true;;
 			?) exit_with_error "$USAGE"
 		esac
 	done
@@ -166,13 +173,13 @@ dispatch() {
 
 	case "$command_modifier" in
 		file)
-			dispatch_file "$file_or_url"
+			dispatch_file "$file_or_url" "$execute" "$verbose"
 			;;
 		url)
-			dispatch_url "$file_or_url"
+			dispatch_url "$file_or_url" "$execute" "$verbose"
 			;;
 		shorten)
-			dispatch_shorten "$file_or_url"
+			dispatch_shorten "$file_or_url" "$execute" "$verbose"
 			;;
 		*)
 			exit_with_error "$USAGE"
