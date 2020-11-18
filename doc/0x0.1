@@ -72,11 +72,25 @@ commands that are executed, or would be if
 .Fl n
 was not passed.
 .El
+.Sh ENVIRONMENT
+.\" The reason we do not call the variable 0X0INSTANCE is that it is illegal to use 0 in a variable
+.Bl -tag -width NULLPOINTERINSTANCE
+.It Ev NULLPOINTERINSTANCE
+Any non-empty value of the environment variable
+.Ev NULLPOINTERINSTANCE
+is used instead of the standard 0x0 instance
+.Lk https://0x0.st .
+See the
+.Sx INSTANCES
+section for a list of known working instances.
+.El
+.Sh INSTANCES
+.Lk https://0x0.st ,
+.Lk https://ttm.sh
 .Sh EXIT STATUS
 .Ex -std 0x0
 .Sh EXAMPLES
 Upload the source code of
-.Nm :
 .Bd -literal -offset indent
 $ 0x0 file "$(which 0x0)"
 .Lk https://0x0.st/iU8B.bin
