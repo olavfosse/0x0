@@ -11,4 +11,4 @@ The main documentation is the man page which you can view at [0x0(1)](https://gi
 
 An ever-so-slightly out of date OpenBSD port\* is available at https://github.com/fossegrim/0x0-port.
 
-\* A port, in this context, just means a software package. The actual program is unchanged.
+\* A port, in this context, just means an installable software package. It does not imply changes to the source code, in fact the actual program is unchanged.
