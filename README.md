@@ -9,4 +9,6 @@ The main documentation is the man page which you can view at [0x0(1)](https://gi
 
 `make install` installs the executable to `$(PREFIX)/bin` and the manual to `$(PREFIX)/man/man1`, `$(PREFIX)` defaulting to `/usr/local`. For most Unix-likes this is the correct locations. The notable exception is MacOS. It does not search `/usr/local/man` for manuals by default. Instead they go in `/usr/share/man` or `/usr/local/share/man`. Deal with it.
 
-An OpenBSD port is in the works. See https://github.com/fossegrim/0x0-port.
+An ever-so-slightly out of date OpenBSD port\* is available at https://github.com/fossegrim/0x0-port.
+
+\* A port, in this context, just means a software package. The actual program is unchanged.
