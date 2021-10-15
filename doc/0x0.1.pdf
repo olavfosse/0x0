@@ -988,62 +988,32 @@ ET
 BT
 /F0 11 Tf
 68.024 36.245 Td
-(Mac) Tj
+(Debian) Tj
 ET
 BT
 /F0 11 Tf
-90.321 36.245 Td
-(OS) Tj
+269.170 36.245 Td
+(October) Tj
 ET
 BT
 /F0 11 Tf
-107.129 36.245 Td
-(X) Tj
+307.351 36.245 Td
+(15,) Tj
 ET
 BT
 /F0 11 Tf
-117.821 36.245 Td
-(10.15) Tj
+323.851 36.245 Td
+(2021) Tj
 ET
 BT
 /F0 11 Tf
-263.362 36.245 Td
-(September) Tj
-ET
-BT
-/F0 11 Tf
-313.159 36.245 Td
-(25,) Tj
-ET
-BT
-/F0 11 Tf
-329.659 36.245 Td
-(2020) Tj
-ET
-BT
-/F0 11 Tf
-469.711 36.245 Td
-(Mac) Tj
-ET
-BT
-/F0 11 Tf
-492.008 36.245 Td
-(OS) Tj
-ET
-BT
-/F0 11 Tf
-508.816 36.245 Td
-(X) Tj
-ET
-BT
-/F0 11 Tf
-519.508 36.245 Td
-(10.15) Tj
+512.490 36.245 Td
+(Debian) Tj
 ET
 endstream
 endobj
 8 0 obj
-9231
+8980
 endobj
 9 0 obj
 <<
@@ -1526,7 +1496,7 @@ ET
 BT
 /F1 11 Tf
 216.832 225.929 Td
-(https://github.com/fossegrim/0x0) Tj
+(https://github.com/olavfosse/0x0) Tj
 ET
 BT
 /F1 11 Tf
@@ -1553,12 +1523,12 @@ ET
 BT
 /F2 11 Tf
 139.920 179.762 Td
-(mail@olavfosse.no) Tj
+(post@olavfosse.no) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-224.290 179.762 Td
+223.069 179.762 Td
 (>) Tj
 ET
 /F0 11 Tf
@@ -1590,62 +1560,32 @@ ET
 BT
 /F0 11 Tf
 68.024 36.245 Td
-(Mac) Tj
+(Debian) Tj
 ET
 BT
 /F0 11 Tf
-90.321 36.245 Td
-(OS) Tj
+269.170 36.245 Td
+(October) Tj
 ET
 BT
 /F0 11 Tf
-107.129 36.245 Td
-(X) Tj
+307.351 36.245 Td
+(15,) Tj
 ET
 BT
 /F0 11 Tf
-117.821 36.245 Td
-(10.15) Tj
+323.851 36.245 Td
+(2021) Tj
 ET
 BT
 /F0 11 Tf
-263.362 36.245 Td
-(September) Tj
-ET
-BT
-/F0 11 Tf
-313.159 36.245 Td
-(25,) Tj
-ET
-BT
-/F0 11 Tf
-329.659 36.245 Td
-(2020) Tj
-ET
-BT
-/F0 11 Tf
-469.711 36.245 Td
-(Mac) Tj
-ET
-BT
-/F0 11 Tf
-492.008 36.245 Td
-(OS) Tj
-ET
-BT
-/F0 11 Tf
-508.816 36.245 Td
-(X) Tj
-ET
-BT
-/F0 11 Tf
-519.508 36.245 Td
-(10.15) Tj
+512.490 36.245 Td
+(Debian) Tj
 ET
 endstream
 endobj
 12 0 obj
-5417
+5166
 endobj
 13 0 obj
 <<
@@ -1684,20 +1624,20 @@ xref
 0 16
 0000000000 65535 f 
 0000000009 00000 n 
-0000015513 00000 n 
+0000015011 00000 n 
 0000000030 00000 n 
 0000000112 00000 n 
 0000000193 00000 n 
 0000000276 00000 n 
 0000000363 00000 n 
-0000009646 00000 n 
-0000009666 00000 n 
-0000009761 00000 n 
-0000009842 00000 n 
-0000015313 00000 n 
-0000015334 00000 n 
-0000015430 00000 n 
-0000015603 00000 n 
+0000009395 00000 n 
+0000009415 00000 n 
+0000009510 00000 n 
+0000009591 00000 n 
+0000014811 00000 n 
+0000014832 00000 n 
+0000014928 00000 n 
+0000015101 00000 n 
 trailer
 <<
 /Size 16
@@ -1705,5 +1645,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-15653
+15151
 %%EOF
